@@ -92,7 +92,7 @@ export function RecipeGenerator() {
 
       setCurrentRecipe(recipe.content);
       toast.success('Recipe generated successfully!');
-    } catch (err) {
+    } catch {
       toast.error(error?.message || 'Failed to generate recipe');
     }
   };
