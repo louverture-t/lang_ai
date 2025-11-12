@@ -1,0 +1,710 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": "1",
+        "title": "Set up project structure and development environment",
+        "description": "Initialize React 19 project with Vite, TypeScript, Tailwind CSS, and configure development environment",
+        "details": "Create a new Vite React project with TypeScript template. Install dependencies: React 19.x, Vite, Tailwind CSS 4.x, TypeScript 5.x, pnpm as package manager. Configure Vite build settings for GitHub Pages deployment. Set up project file structure with folders: components/, components/ui/, contexts/, hooks/, lib/, pages/. Configure tsconfig.json for proper TypeScript support. Set up Tailwind config with OKLCH color space support and custom theme variables for pastel green and dark green themes. Initialize git repository and create initial .gitignore file.",
+        "testStrategy": "Verify project builds without errors using 'pnpm build'. Check that TypeScript compilation passes. Ensure Tailwind CSS is properly configured by testing basic utility classes. Verify all folder structure exists and imports work correctly.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Initialize Vite React project with TypeScript template",
+            "description": "Create a new Vite React project using the TypeScript template and set up pnpm as the package manager",
+            "dependencies": [],
+            "details": "Run 'npm create vite@latest . --template react-ts' to create the project. Install pnpm globally if not present. Run 'pnpm install' to install initial dependencies. Verify the project structure is created correctly with src/, public/, and configuration files.",
+            "status": "done",
+            "testStrategy": "Verify project creates successfully and 'pnpm dev' starts development server without errors",
+            "updatedAt": "2025-11-12T02:10:44.279Z",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Install and configure project dependencies",
+            "description": "Install React 19.x, Vite, TypeScript 5.x, and other core dependencies using pnpm",
+            "dependencies": [
+              1
+            ],
+            "details": "Install specific versions: React 19.x, TypeScript 5.x, and latest Vite. Add development dependencies for TypeScript compilation and type definitions. Update package.json scripts for build, dev, and preview commands. Ensure all peer dependencies are satisfied.",
+            "status": "done",
+            "testStrategy": "Run 'pnpm build' to verify all dependencies install correctly and TypeScript compilation passes",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T02:10:52.196Z"
+          },
+          {
+            "id": 3,
+            "title": "Install and configure Tailwind CSS 4.x with OKLCH support",
+            "description": "Set up Tailwind CSS 4.x with OKLCH color space configuration for pastel and dark green themes",
+            "dependencies": [
+              2
+            ],
+            "details": "Install Tailwind CSS 4.x and its dependencies. Create tailwind.config.js with OKLCH color space configuration. Set up CSS variables for pastel green (oklch(0.97 0.02 145)) and dark green (oklch(0.15 0.04 145)) themes. Configure PostCSS and add Tailwind directives to main CSS file. Set up custom theme variables for consistent color usage.",
+            "status": "done",
+            "testStrategy": "Test basic Tailwind utility classes render correctly and custom OKLCH colors display properly in browser",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T02:10:57.897Z"
+          },
+          {
+            "id": 4,
+            "title": "Configure TypeScript settings and create project folder structure",
+            "description": "Set up tsconfig.json for proper TypeScript support and create organized folder structure",
+            "dependencies": [
+              3
+            ],
+            "details": "Configure tsconfig.json with strict settings, path mapping, and React 19 support. Create folder structure: components/, components/ui/, contexts/, hooks/, lib/, pages/. Add index.ts barrel exports for clean imports. Configure absolute imports using @ prefix for src directory. Ensure proper TypeScript resolution for all folders.",
+            "status": "pending",
+            "testStrategy": "Verify TypeScript compilation passes with no errors and absolute imports work correctly from all folders",
+            "parentId": "undefined"
+          },
+          {
+            "id": 5,
+            "title": "Configure Vite build settings for GitHub Pages deployment",
+            "description": "Set up Vite configuration for optimized GitHub Pages deployment with proper base path",
+            "dependencies": [
+              4
+            ],
+            "details": "Configure vite.config.ts with GitHub Pages base path settings. Set up build optimization for production deployment. Configure static asset handling and public path. Create initial .gitignore file with node_modules, dist, and environment files. Initialize git repository and create initial commit with project structure.",
+            "status": "pending",
+            "testStrategy": "Run 'pnpm build' to verify production build works correctly and outputs proper file structure for GitHub Pages",
+            "parentId": "undefined"
+          }
+        ],
+        "complexity": 6,
+        "recommendedSubtasks": 5,
+        "expansionPrompt": "Break down the project setup into discrete steps: initializing Vite project, configuring TypeScript, setting up Tailwind CSS with OKLCH colors, creating folder structure, and configuring build settings for GitHub Pages deployment.",
+        "updatedAt": "2025-11-12T02:17:28.052Z"
+      },
+      {
+        "id": "2",
+        "title": "Install and configure shadcn/ui components",
+        "description": "Set up shadcn/ui component library with required primitives for the dashboard",
+        "details": "Install shadcn/ui CLI and initialize it in the project. Add required components: button, card, dialog, input, label, scroll-area, textarea, toast, and theme provider. Configure components.json with proper paths and styling preferences. Customize component styles to work with the pastel green and dark green theme system. Ensure all components are accessible and support keyboard navigation. Import and configure Lucide React for icons (moon, sun, loader, etc.).",
+        "testStrategy": "Test each shadcn/ui component renders correctly. Verify theme switching works with all components. Check keyboard navigation and accessibility features. Test that components respond properly to theme changes without visual glitches.",
+        "priority": "high",
+        "dependencies": [
+          "1"
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install and initialize shadcn/ui CLI with component configuration",
+            "description": "Set up shadcn/ui CLI, initialize project configuration, and install Lucide React for icons",
+            "dependencies": [],
+            "details": "Install shadcn/ui CLI globally or as dev dependency. Run shadcn/ui init to create components.json configuration file with proper paths (src/components/ui), TypeScript support, and styling preferences. Configure base colors and CSS variables structure. Install and configure Lucide React package for moon, sun, loader, and other required icons. Set up proper import paths and ensure CLI can generate components in the correct directory structure.",
+            "status": "pending",
+            "testStrategy": "Verify shadcn/ui CLI is installed and accessible. Check that components.json is created with correct configuration. Test that Lucide React icons can be imported and rendered without errors.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Add required shadcn/ui component primitives",
+            "description": "Install and configure all required shadcn/ui components for the dashboard functionality",
+            "dependencies": [
+              1
+            ],
+            "details": "Use shadcn/ui CLI to add the following components: button, card, dialog, input, label, scroll-area, textarea, toast, and theme provider. Each component will be added to src/components/ui/ directory. Verify all components are properly imported and can be used. Check that component dependencies (like Radix UI primitives) are automatically installed. Ensure all components follow the established file structure and naming conventions.",
+            "status": "pending",
+            "testStrategy": "Test that each component can be imported and renders without errors. Verify all Radix UI dependencies are installed. Check component file structure matches shadcn/ui conventions.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Customize component styles for pastel green theme with accessibility validation",
+            "description": "Modify shadcn/ui component styles to work with the pastel green and dark green theme system and ensure accessibility compliance",
+            "dependencies": [
+              2
+            ],
+            "details": "Customize the generated shadcn/ui components to integrate with the OKLCH-based theme system. Update CSS variables in components to use the pastel green (oklch(0.97 0.02 145)) and dark green (oklch(0.15 0.04 145)) color scheme. Ensure proper contrast ratios for accessibility compliance. Implement keyboard navigation support for all interactive components. Test color combinations for WCAG AA compliance. Add focus indicators and ensure proper tab order. Verify components respond correctly to theme changes with smooth transitions.",
+            "status": "pending",
+            "testStrategy": "Test all components in both light and dark themes. Verify keyboard navigation works for all interactive elements. Check color contrast meets WCAG AA standards using accessibility tools. Test theme switching transitions are smooth without visual glitches.",
+            "parentId": "undefined"
+          }
+        ],
+        "complexity": 4,
+        "recommendedSubtasks": 3,
+        "expansionPrompt": "Divide into shadcn/ui installation and initialization, adding required component primitives, and customizing components for the theme system with accessibility validation.",
+        "updatedAt": "2025-11-12T02:17:50.690Z"
+      },
+      {
+        "id": "3",
+        "title": "Implement theme system with pastel green and dark green themes",
+        "description": "Create theme context and implement dual-theme system using OKLCH color space",
+        "details": "Create ThemeContext.tsx with React context for theme management. Implement theme provider with light/dark mode toggle functionality. Define OKLCH color values in CSS variables: Light theme with very light pastel green background (oklch(0.97 0.02 145)), dark theme with very dark green background (oklch(0.15 0.04 145)). Configure Tailwind to use custom theme colors. Add theme persistence to localStorage. Create theme toggle button component with moon/sun icons. Ensure smooth 200ms transitions on theme changes.",
+        "testStrategy": "Test theme switching between light and dark modes. Verify OKLCH color values render correctly across browsers. Check that theme preference persists after page reload. Ensure all components adapt properly to theme changes without reflow.",
+        "priority": "high",
+        "dependencies": [
+          "2"
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create ThemeContext.tsx with React context for theme management",
+            "description": "Implement React context provider for managing theme state across the application",
+            "dependencies": [],
+            "details": "Create ThemeContext.tsx file with React.createContext for theme state management. Define theme types (light/dark), context interface, and custom hook useTheme(). Implement ThemeProvider component that wraps the application and provides theme switching functionality. Include theme state initialization and toggle methods.\n<info added on 2025-11-12T12:57:21.316Z>\nImplementation plan completed:\n1. OKLCH colors already defined in index.css (light: oklch(0.97 0.02 145), dark: oklch(0.15 0.04 145))\n2. Tailwind configured with CSS variables for theme system\n3. Smooth transitions (200ms) implemented in CSS\n4. Ready to implement ThemeContext with React context pattern\n5. ThemeToggle component will use Lucide icons (moon/sun)\n6. ThemeProvider will wrap entire application in main.tsx\n7. localStorage hooks for theme persistence included in design\n8. All color specifications match PRD requirements\n</info added on 2025-11-12T12:57:21.316Z>\n<info added on 2025-11-12T13:08:55.769Z>\nThemeContext implementation completed successfully. Created src/contexts/ThemeContext.tsx with proper TypeScript types (Theme, ThemeContextType), React context setup, localStorage persistence using 'theme-preference' key, and comprehensive theme management including toggleTheme and setTheme methods. Implemented useTheme hook with proper error handling for components outside ThemeProvider. No TypeScript or build errors detected. Ready for integration with main application.\n</info added on 2025-11-12T13:08:55.769Z>",
+            "status": "done",
+            "testStrategy": "Test context provider wraps app correctly. Verify useTheme hook returns current theme and toggle function. Check theme state updates propagate to consuming components.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T13:09:12.868Z"
+          },
+          {
+            "id": 2,
+            "title": "Define OKLCH color variables and CSS theme configuration",
+            "description": "Implement OKLCH color space variables for light and dark themes in CSS",
+            "dependencies": [
+              1
+            ],
+            "details": "Define CSS custom properties using OKLCH color space values. Light theme: very light pastel green background oklch(0.97 0.02 145). Dark theme: very dark green background oklch(0.15 0.04 145). Create complementary colors for text, borders, and UI elements. Add smooth 200ms transitions for all color properties to ensure seamless theme switching.",
+            "status": "done",
+            "testStrategy": "Verify OKLCH colors render correctly across browsers. Test color contrast meets accessibility standards. Check smooth transitions work on theme changes without visual glitches.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T13:09:34.460Z"
+          },
+          {
+            "id": 3,
+            "title": "Configure Tailwind CSS for custom theme colors",
+            "description": "Extend Tailwind configuration to use custom OKLCH theme colors",
+            "dependencies": [
+              2
+            ],
+            "details": "Modify tailwind.config.js to extend theme colors with CSS custom properties. Map OKLCH variables to semantic color names (bg-primary, text-primary, etc.). Configure dark mode variant to automatically switch color values. Ensure all existing Tailwind classes work with the new theme system.",
+            "status": "done",
+            "testStrategy": "Test Tailwind classes use custom theme colors. Verify dark mode variant switches colors correctly. Check all components adapt to new color system without breaking.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T13:09:43.153Z"
+          },
+          {
+            "id": 4,
+            "title": "Implement localStorage persistence and theme toggle component",
+            "description": "Create theme toggle button with localStorage persistence and smooth transitions",
+            "dependencies": [
+              3
+            ],
+            "details": "Create ThemeToggle.tsx component with moon/sun icons for theme switching. Implement localStorage persistence with key 'theme-preference'. Add useEffect to initialize theme from localStorage on app load. Ensure theme preference persists across browser sessions. Include proper keyboard accessibility and ARIA labels for the toggle button.\n<info added on 2025-11-12T13:10:26.975Z>\nComponent successfully implemented with ThemeToggle.tsx featuring Lucide Moon/Sun icons and smooth rotation/scale animations. ThemeContext integration completed with localStorage persistence using 'theme-preference' key. Main app wrapped with ThemeProvider and App.tsx updated with comprehensive theme demonstration including current theme display, OKLCH color swatches, and implementation showcase. All accessibility features included with ARIA labels. Build completed without errors - theme system fully operational.\n</info added on 2025-11-12T13:10:26.975Z>",
+            "status": "done",
+            "testStrategy": "Test theme preference saves to and loads from localStorage. Verify theme persists after page reload. Check toggle button accessibility with keyboard navigation and screen readers.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T13:09:51.292Z"
+          }
+        ],
+        "complexity": 5,
+        "recommendedSubtasks": 4,
+        "expansionPrompt": "Split into React context creation, OKLCH color variable definition, Tailwind configuration for custom colors, and localStorage persistence with smooth transitions.",
+        "updatedAt": "2025-11-12T13:09:51.292Z"
+      },
+      {
+        "id": "4",
+        "title": "Create API key configuration modal and management",
+        "description": "Implement modal for OpenAI API key input with localStorage persistence",
+        "details": "Create ApiKeyConfig.tsx component using shadcn dialog. Design modal with password-masked input field for API key entry. Add form validation to prevent empty submissions. Implement localStorage storage with key 'openai-api-key'. Show modal automatically on first visit when no API key exists. Add security notice about client-side storage. Include 'Save Key' button with loading state. Implement error handling for invalid keys. Modal should close after successful key save and enable all AI components.",
+        "testStrategy": "Test modal appears on first visit. Verify API key saves to localStorage and persists across sessions. Check password masking works correctly. Test form validation prevents empty submissions. Verify modal closes after successful save.",
+        "priority": "high",
+        "dependencies": [
+          "3"
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create ApiKeyConfig modal component with shadcn dialog",
+            "description": "Build the core modal component structure using shadcn dialog with proper styling and accessibility",
+            "dependencies": [],
+            "details": "Create ApiKeyConfig.tsx component using shadcn Dialog components (Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription). Implement proper modal structure with overlay and centered positioning. Add responsive design for mobile and desktop viewports. Include dialog accessibility features like focus management and escape key handling. Style the modal with appropriate padding, borders, and shadow effects consistent with the application theme.\n<info added on 2025-11-12T13:36:31.211Z>\nImplementation completed successfully. Component includes password-masked input field, Save/Cancel buttons with loading states, API key format validation requiring 'sk-' prefix, security warning banner about client-side storage risks, direct link to OpenAI API keys page for key generation, localStorage integration for key persistence, external control via open/onOpenChange/onSave props, inline error display with red styling for validation failures, and Enter key support for quick form submission without clicking Save button.\n</info added on 2025-11-12T13:36:31.211Z>",
+            "status": "pending",
+            "testStrategy": "Test modal opens and closes correctly. Verify accessibility features like focus trap and keyboard navigation. Check responsive design on different screen sizes.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Implement form validation and localStorage integration",
+            "description": "Add password-masked input field with form validation and localStorage persistence for API key storage",
+            "dependencies": [
+              1
+            ],
+            "details": "Add password-type input field for API key entry with proper masking. Implement form validation to prevent empty submissions and show appropriate error messages. Create localStorage integration with key 'openai-api-key' for persistent storage. Add 'Save Key' button with loading state and success feedback. Implement error handling for localStorage operations and invalid key formats. Include security notice about client-side storage risks and recommendations.\n<info added on 2025-11-12T13:38:07.688Z>\nForm validation successfully implemented with comprehensive error handling: empty input validation displays 'API key is required', format validation checks for 'sk-' prefix showing 'Invalid API key format' for invalid keys, localStorage integration stores keys using 'openai-api-key' identifier, error states provide immediate visual feedback with red input borders and red error text, and try-catch blocks handle localStorage operation failures gracefully. All validation logic centralized in handleSave function providing real-time user feedback and preventing invalid submissions.\n</info added on 2025-11-12T13:38:07.688Z>",
+            "status": "done",
+            "testStrategy": "Test form validation prevents empty submissions. Verify API key saves to and loads from localStorage correctly. Check password masking functionality and loading states work properly.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T13:37:11.067Z"
+          },
+          {
+            "id": 3,
+            "title": "Add automatic modal display logic and security considerations",
+            "description": "Implement logic to automatically show modal on first visit and handle security considerations",
+            "dependencies": [
+              2
+            ],
+            "details": "Create logic to detect first-time visitors by checking localStorage for existing API key. Automatically display modal when no API key is found. Implement modal close functionality after successful key save. Add security warning text about client-side storage limitations and recommend using environment variables for production. Create hook or context to manage API key state across the application. Ensure modal enables all AI components after successful key configuration.\n<info added on 2025-11-12T13:40:09.567Z>\nImplementation completed successfully. useApiKey hook created with automatic modal detection on mount - checks localStorage for existing API key and shows modal for first-time visitors. Hook integrated into App.tsx with visual API key status indicator in header showing 'API Key Set' (green) or 'No API Key' (yellow) with interactive Configure/Change buttons. Modal now appears automatically on first visit and provides manual access via header buttons. All localStorage operations standardized to use 'openai-api-key' key. Security warning about client-side storage already implemented in ApiKeyConfig component as planned.\n</info added on 2025-11-12T13:40:09.567Z>",
+            "status": "done",
+            "testStrategy": "Test modal appears automatically on first visit when no API key exists. Verify modal closes after successful save and enables AI components. Check that security warnings are displayed appropriately.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T13:40:27.330Z"
+          }
+        ],
+        "complexity": 3,
+        "recommendedSubtasks": 3,
+        "expansionPrompt": "Break into modal component creation with shadcn dialog, form validation and localStorage integration, and automatic modal display logic with security considerations.",
+        "updatedAt": "2025-11-12T13:40:42.129Z"
+      },
+      {
+        "id": "5",
+        "title": "Install and configure LangChain.js with OpenAI integration and LangSmith tracing",
+        "description": "Set up LangChain.js library with OpenAI GPT-4.1-mini model configuration, LangSmith tracing, and React Query v5 integration",
+        "details": "Install @langchain/openai, @langchain/core, and langsmith packages. Set up LangSmith tracing configuration with environment variables. Create utility functions for LangChain configuration with tracing enabled. Set up ChatOpenAI model configuration with GPT-4.1-mini, temperature 0.7, and dynamic API key from localStorage. Create PromptTemplate setup for recipe generation. Implement error handling for API failures, rate limiting (429 errors), and network issues. Add English-only response enforcement by appending 'Respond in English only' to all prompts. Create reusable functions for different AI interaction patterns. Install and configure React Query v5 (@tanstack/react-query) for better state management of AI responses. Set up QueryClient and providers for caching and optimistic updates.",
+        "testStrategy": "Test ChatOpenAI instance creation with valid API key and LangSmith tracing. Verify GPT-4.1-mini model selection. Test error handling with invalid API key. Check that all AI responses are in English. Test rate limiting and network error scenarios. Verify LangSmith traces are captured for all LangChain operations. Test React Query caching and state management.",
+        "priority": "high",
+        "dependencies": [
+          "4"
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install LangChain packages, LangSmith, and React Query v5",
+            "description": "Install @langchain/openai, @langchain/core, langsmith, and @tanstack/react-query packages using pnpm",
+            "dependencies": [],
+            "details": "Run 'pnpm add @langchain/openai @langchain/core langsmith @tanstack/react-query' to install required packages. Verify package.json includes the correct versions and that all peer dependencies are satisfied. Check that TypeScript types are available for all packages.",
+            "status": "pending",
+            "testStrategy": "Verify packages are installed correctly by checking package.json and node_modules. Test that imports work without TypeScript errors.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Configure LangSmith tracing and environment setup",
+            "description": "Set up LangSmith tracing configuration with proper environment variables and initialization",
+            "dependencies": [
+              1
+            ],
+            "details": "Configure LangSmith tracing by setting up environment variables for LANGCHAIN_TRACING_V2, LANGCHAIN_ENDPOINT, LANGCHAIN_API_KEY, and LANGCHAIN_PROJECT. Create utility functions to initialize tracing in development environment. Add proper error handling for when LangSmith credentials are not available. Create tracing configuration that works with localStorage API keys.",
+            "status": "pending",
+            "testStrategy": "Test that LangSmith tracing initializes correctly with proper environment variables. Verify traces are captured for LangChain operations. Test graceful fallback when LangSmith is not configured.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Set up React Query v5 providers and configuration",
+            "description": "Configure React Query client and providers for AI response state management",
+            "dependencies": [
+              1
+            ],
+            "details": "Set up QueryClient with appropriate default options for AI interactions (stale time, cache time, retry logic). Create QueryClientProvider setup in main application. Configure query keys and mutation patterns for different AI operations. Set up optimistic updates and error handling patterns specific to AI responses.",
+            "status": "pending",
+            "testStrategy": "Test QueryClient configuration works correctly. Verify providers are set up properly. Test query caching and mutation patterns work as expected.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 4,
+            "title": "Create ChatOpenAI model configuration with LangSmith integration",
+            "description": "Set up ChatOpenAI model configuration with GPT-4.1-mini, temperature 0.7, dynamic API key retrieval, and LangSmith tracing enabled",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Create lib/langchain.ts file with ChatOpenAI configuration function that includes LangSmith tracing. Configure model to use 'gpt-4.1-mini', set temperature to 0.7, and implement dynamic API key retrieval from localStorage with key 'openai-api-key'. Add proper TypeScript types and export reusable configuration function with tracing enabled.",
+            "status": "pending",
+            "testStrategy": "Test ChatOpenAI instance creation with valid API key from localStorage and LangSmith tracing. Verify correct model and temperature settings. Test that configuration throws error when API key is missing. Verify traces appear in LangSmith dashboard.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 5,
+            "title": "Implement PromptTemplate setup with tracing for recipe generation",
+            "description": "Create PromptTemplate configuration for recipe generation with English-only response enforcement and LangSmith tracing",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Set up PromptTemplate from @langchain/core/prompts with template for recipe generation and LangSmith tracing enabled. Include variables for recipe type, dietary restrictions, and ingredients. Automatically append 'Respond in English only' to all prompts to enforce language consistency. Create reusable template function that accepts parameters and includes tracing metadata.",
+            "status": "pending",
+            "testStrategy": "Test PromptTemplate creates properly formatted prompts with variables. Verify 'Respond in English only' is appended to all generated prompts. Test template with various input parameters. Verify tracing data is captured for template operations.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 6,
+            "title": "Implement comprehensive error handling with React Query integration",
+            "description": "Create robust error handling for API failures, rate limiting, and network issues integrated with React Query patterns",
+            "dependencies": [
+              3,
+              4
+            ],
+            "details": "Implement error handling wrapper functions integrated with React Query mutations and queries. Handle different error types: invalid API keys (401), rate limiting (429), network timeouts, and general API failures. Add retry logic for rate limiting with exponential backoff using React Query's retry mechanisms. Create user-friendly error messages for each scenario. Include logging for debugging purposes.",
+            "status": "pending",
+            "testStrategy": "Test error handling with invalid API key scenarios. Simulate rate limiting (429) errors and verify retry logic with React Query. Test network timeout handling. Verify appropriate error messages are displayed to users. Test React Query error boundaries work correctly.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 7,
+            "title": "Create reusable utility functions with React Query hooks",
+            "description": "Build reusable functions and React Query hooks for different AI interaction patterns",
+            "dependencies": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "details": "Create utility functions and custom React Query hooks in lib/langchain.ts for common AI interaction patterns: useGenerateRecipe(), useChatResponse(), and useProcessPrompt(). Each hook should use the configured ChatOpenAI model with LangSmith tracing, apply appropriate error handling, and return consistent response formats with React Query's loading, error, and data states. Export all functions and hooks for use in React components.",
+            "status": "pending",
+            "testStrategy": "Test each utility function and React Query hook with valid inputs and API key. Verify hooks return expected response formats with proper loading states. Test error propagation from hooks to calling components. Check that all hooks work consistently across the application with LangSmith tracing.",
+            "parentId": "undefined"
+          }
+        ],
+        "complexity": 7,
+        "recommendedSubtasks": 5,
+        "expansionPrompt": "Divide into LangChain package installation, ChatOpenAI model configuration with dynamic API keys, PromptTemplate setup, comprehensive error handling for API scenarios, and reusable utility function creation."
+      },
+      {
+        "id": "6",
+        "title": "Build AI Chat component with memory functionality and React Query integration",
+        "description": "Create conversational AI chat interface with message history, memory retention, and React Query for state management",
+        "details": "Create AIChat.tsx component with message input (textarea), send button, and scrollable message history (max 500px height). Implement Message interface with role ('user' | 'ai'), content, and timestamp. Add conversation memory to retain last 10 messages for context. Style user messages (right-aligned, green background) and AI messages (left-aligned, gray background) with max-width 80%. Implement text overflow protection with 'whitespace-pre-wrap break-words'. Add loading states with spinner. Include 'Try these examples' buttons: 'Tell me a fun fact about space', 'Explain machine learning in simple terms', 'Write a short poem about coding'. Add clear chat functionality and auto-scroll to bottom on new messages. Integrate React Query for chat message state management and optimistic updates.",
+        "testStrategy": "Test message sending and receiving with React Query integration. Verify conversation memory keeps last 10 messages. Check text wrapping handles long messages correctly. Test example buttons pre-fill and send messages. Verify auto-scroll and clear chat functionality. Test React Query loading and error states.",
+        "priority": "medium",
+        "dependencies": [
+          "5"
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create AIChat component structure with message interface and React Query integration",
+            "description": "Build the core AIChat.tsx component with TypeScript interfaces for messages, basic component structure, and React Query hooks",
+            "dependencies": [],
+            "details": "Create AIChat.tsx component file in components/ directory. Define Message interface with role ('user' | 'ai'), content (string), and timestamp (Date) properties. Set up component state for messages array, input text, and loading state. Create basic JSX structure with container div, message history area, and input section. Import necessary React hooks (useState, useRef, useEffect) and React Query hooks for chat operations. Ensure TypeScript types are properly defined and integrate with LangSmith tracing.",
+            "status": "pending",
+            "testStrategy": "Verify component renders without errors. Check that Message interface accepts correct property types. Test that state variables are properly initialized. Verify React Query hooks are properly integrated.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Implement message display with styling and scrolling",
+            "description": "Create message list display with proper styling for user/AI messages and scrollable container",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement scrollable message history container with max-height 500px and auto-scroll behavior. Style user messages with right alignment, green background, and AI messages with left alignment and gray background. Set max-width 80% for both message types. Add 'whitespace-pre-wrap break-words' CSS classes for text overflow protection. Implement auto-scroll to bottom functionality using useRef and scrollIntoView. Add timestamp display for each message with proper formatting.",
+            "status": "pending",
+            "testStrategy": "Test message styling renders correctly for both user and AI messages. Verify auto-scroll works when new messages are added. Check text wrapping handles long messages properly.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Add conversation memory with React Query and message input handling",
+            "description": "Implement conversation memory to retain last 10 messages using React Query and handle message input/sending",
+            "dependencies": [
+              2
+            ],
+            "details": "Create message input using textarea element with send button. Implement handleSendMessage function using React Query mutations to add user messages and get AI responses. Add conversation memory logic to maintain only the last 10 messages for context (slice array when exceeding limit). Integrate with LangChain.js and LangSmith tracing to send messages to AI and receive responses. Add message validation to prevent empty messages. Implement clear chat functionality to reset conversation state with React Query cache invalidation.",
+            "status": "pending",
+            "testStrategy": "Test message sending adds user message to conversation with React Query. Verify conversation memory maintains only last 10 messages. Test clear chat functionality resets state properly and invalidates React Query cache. Verify LangSmith traces are captured.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 4,
+            "title": "Add loading states, example buttons, and error handling with React Query",
+            "description": "Implement loading spinner, example prompt buttons, and comprehensive error handling using React Query states",
+            "dependencies": [
+              3
+            ],
+            "details": "Add loading state with spinner component during AI response generation using React Query's isLoading state. Disable input and send button while loading. Create 'Try these examples' section with three buttons: 'Tell me a fun fact about space', 'Explain machine learning in simple terms', 'Write a short poem about coding'. Implement click handlers to populate input and send example messages using React Query mutations. Add error handling for API failures, network issues, and rate limiting using React Query's error states. Display error messages to user with retry functionality.",
+            "status": "pending",
+            "testStrategy": "Test loading spinner appears during AI response using React Query states. Verify example buttons pre-fill and send messages correctly. Test error handling displays appropriate messages for different failure scenarios. Test retry functionality works with React Query.",
+            "parentId": "undefined"
+          }
+        ],
+        "complexity": 6,
+        "recommendedSubtasks": 4,
+        "expansionPrompt": "Split into chat UI component creation with message styling, conversation memory implementation with message history, interactive example buttons and auto-scroll functionality, and loading states with error handling."
+      },
+      {
+        "id": "7",
+        "title": "Build Recipe Generator with template-driven prompts, LangSmith tracing, and React Query",
+        "description": "Create recipe generation component using LangChain PromptTemplate with save functionality, LangSmith tracing, and React Query state management",
+        "details": "Create RecipeGenerator.tsx with form inputs: tone (text), cuisine (text), dish (text), steps (number). Implement PromptTemplate with template: 'You are a {tone} chef creating a recipe. Respond in English only. Generate a detailed recipe for {dish}{cuisine}. Include: Introduction, Ingredients, {steps} steps, Tips. Write everything in English.' Add scrollable recipe display area (max 400px) with text overflow protection. Implement example buttons for Italian Pasta Carbonara, Japanese Ramen, Mexican Tacos. Create Recipe interface and localStorage save functionality with 'saved-recipes' key. Add 'Save Recipe' and 'View Saved' buttons. Include recipe deletion capability. Integrate LangSmith tracing for all recipe generation operations and use React Query for recipe generation state management.",
+        "testStrategy": "Test form submission with all fields filled. Verify PromptTemplate correctly formats prompts with LangSmith tracing. Check recipe display scrolling and text wrapping. Test recipe saving to and loading from localStorage. Verify example buttons pre-fill forms correctly. Test React Query integration for recipe generation. Verify LangSmith traces are captured.",
+        "priority": "medium",
+        "dependencies": [
+          "5"
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create RecipeGenerator form component with input fields and React Query setup",
+            "description": "Build the form UI with tone, cuisine, dish, and steps input fields using shadcn components and React Query hooks",
+            "dependencies": [],
+            "details": "Create RecipeGenerator.tsx component with form containing: tone input (text), cuisine input (text), dish input (text), steps input (number). Use shadcn/ui Input and Label components. Add proper form validation to prevent empty submissions. Implement controlled component pattern with useState for form state management. Set up React Query hooks for recipe generation with proper loading and error states. Style inputs consistently with project theme.",
+            "status": "pending",
+            "testStrategy": "Test all input fields accept correct data types. Verify form validation prevents empty submissions. Check form styling matches project theme. Test React Query hooks are properly configured.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Implement PromptTemplate integration with LangChain and LangSmith tracing",
+            "description": "Set up LangChain PromptTemplate with the specified template string, variable substitution, and LangSmith tracing",
+            "dependencies": [
+              1
+            ],
+            "details": "Import and configure LangChain PromptTemplate with template: 'You are a {tone} chef creating a recipe. Respond in English only. Generate a detailed recipe for {dish}{cuisine}. Include: Introduction, Ingredients, {steps} steps, Tips. Write everything in English.' Implement template variable substitution using form values with LangSmith tracing enabled. Connect to OpenAI API for recipe generation with proper trace metadata. Add proper error handling for API calls integrated with React Query error states.",
+            "status": "pending",
+            "testStrategy": "Test PromptTemplate correctly substitutes variables. Verify API integration works with valid API key. Check error handling for failed API calls. Verify LangSmith traces are captured for all recipe generation operations.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Create recipe display area with localStorage save functionality and React Query caching",
+            "description": "Build scrollable recipe display with save/load functionality, recipe management, and React Query caching",
+            "dependencies": [
+              2
+            ],
+            "details": "Create scrollable recipe display area with max-height 400px and text overflow protection using 'whitespace-pre-wrap break-words'. Implement Recipe interface with properties for generated recipes. Add localStorage functionality with 'saved-recipes' key integrated with React Query cache. Create 'Save Recipe' and 'View Saved' buttons. Implement recipe deletion capability with cache invalidation. Add proper loading states during recipe generation using React Query states.",
+            "status": "pending",
+            "testStrategy": "Test recipe display scrolling and text wrapping. Verify recipes save to and load from localStorage correctly. Test recipe deletion functionality works properly. Test React Query caching works with localStorage integration.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 4,
+            "title": "Add example buttons with pre-fill functionality and React Query integration",
+            "description": "Implement example recipe buttons that pre-populate form fields with sample data and integrate with React Query",
+            "dependencies": [
+              1
+            ],
+            "details": "Create example buttons for: 'Italian Pasta Carbonara', 'Japanese Ramen', 'Mexican Tacos'. Each button should pre-fill the form with appropriate values: tone, cuisine, dish, and steps count. Use shadcn Button components with consistent styling. Position buttons logically near the form inputs. Implement click handlers that populate form state with example data and trigger React Query mutations for immediate recipe generation.",
+            "status": "pending",
+            "testStrategy": "Test each example button correctly pre-fills all form fields. Verify pre-filled values are appropriate for each recipe type. Check button styling matches project theme. Test React Query integration with example button triggers.",
+            "parentId": "undefined"
+          }
+        ],
+        "complexity": 5,
+        "recommendedSubtasks": 4,
+        "expansionPrompt": "Break into form component creation with input fields, PromptTemplate implementation and integration, recipe display with save functionality to localStorage, and example buttons with pre-fill logic."
+      },
+      {
+        "id": "8",
+        "title": "Build Simple AI Query component for direct LLM calls with LangSmith and React Query",
+        "description": "Create simple question-answer interface without conversation memory, integrated with LangSmith tracing and React Query state management",
+        "details": "Create SimpleQuery.tsx component with textarea for questions and scrollable response area (max 400px). Implement direct ChatOpenAI.invoke() calls without memory - each query is independent. Add input validation to prevent empty submissions. Include example buttons: 'What is the difference between AI and ML?', 'How does blockchain work?', 'Explain REST APIs'. Apply text overflow protection with 'whitespace-pre-wrap break-words'. Add loading states with skeleton loader. Ensure all responses are in English by appending language instruction to prompts. Include proper error handling for API failures. Integrate LangSmith tracing for all AI queries and use React Query for query state management and caching.",
+        "testStrategy": "Test question submission and response display. Verify each query is independent (no memory). Check example buttons work correctly. Test input validation prevents empty submissions. Verify text overflow handling for long responses. Test React Query integration and caching. Verify LangSmith traces are captured for all queries.",
+        "priority": "medium",
+        "dependencies": [
+          "5"
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create SimpleQuery component structure with textarea, response display, and React Query setup",
+            "description": "Build the basic SimpleQuery.tsx component with textarea input for questions, scrollable response area with 400px max height, and React Query integration",
+            "dependencies": [],
+            "details": "Create SimpleQuery.tsx component with textarea for user input, submit button, and response display area. Set up scrollable response container with max-height: 400px. Apply proper styling for layout and responsiveness. Include text overflow protection with 'whitespace-pre-wrap break-words' for response formatting. Set up React Query hooks for query management with proper loading and error states.",
+            "status": "pending",
+            "testStrategy": "Test component renders correctly with textarea and response area. Verify scrollable behavior with long responses. Check text wrapping and overflow handling. Test React Query hooks are properly configured.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Implement direct ChatOpenAI integration without memory with LangSmith tracing",
+            "description": "Add ChatOpenAI.invoke() calls for independent queries without conversation memory, integrated with LangSmith tracing and React Query",
+            "dependencies": [
+              1
+            ],
+            "details": "Integrate ChatOpenAI.invoke() method for direct LLM calls with LangSmith tracing enabled. Ensure each query is completely independent with no conversation memory. Add input validation to prevent empty submissions. Implement proper error handling for API failures including network issues and rate limiting using React Query error handling. Append 'Respond in English only' to all prompts to ensure English responses. Set up proper trace metadata for debugging.",
+            "status": "pending",
+            "testStrategy": "Test that queries work independently without memory retention. Verify input validation blocks empty submissions. Check error handling for API failures with React Query. Confirm all responses are in English. Verify LangSmith traces are captured for all queries.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Add example buttons with loading states, skeleton loader, and React Query integration",
+            "description": "Implement example question buttons and loading states with skeleton loader for better UX, integrated with React Query",
+            "dependencies": [
+              2
+            ],
+            "details": "Create example buttons for: 'What is the difference between AI and ML?', 'How does blockchain work?', 'Explain REST APIs'. Add loading states with skeleton loader during API calls using React Query loading states. Implement proper button styling and click handling to populate textarea and submit automatically using React Query mutations. Ensure loading indicators are visible during API processing. Add query caching for repeated questions.",
+            "status": "pending",
+            "testStrategy": "Test example buttons populate textarea and submit correctly. Verify loading states appear during API calls with React Query. Check skeleton loader displays properly. Test all example questions work as expected. Test React Query caching for repeated questions.",
+            "parentId": "undefined"
+          }
+        ],
+        "complexity": 4,
+        "recommendedSubtasks": 3,
+        "expansionPrompt": "Divide into query component creation with textarea input, direct ChatOpenAI integration without memory, and example buttons with validation and loading states."
+      },
+      {
+        "id": "9",
+        "title": "Create main dashboard layout and responsive design with React Query provider setup",
+        "description": "Build Home.tsx with responsive 3-column layout, header with theme toggle, and React Query provider configuration",
+        "details": "Create Home.tsx as main dashboard page. Implement responsive layout: 3-column grid on desktop (1024px+), single column on mobile (320px+). Add header with title 'LangChain Dashboard' and theme toggle button. Position the three AI components: AI Chat (left), Recipe Generator (center), Simple Query (right). Implement responsive padding: 1rem mobile, 1.5rem tablet, 2rem desktop. Add container max-width of 1280px. Ensure all components are properly spaced and aligned. Add error boundary wrapper for robust error handling. Include loading states for when API key is not configured (gray out components). Set up React Query provider at the app level to support all AI components.",
+        "testStrategy": "Test responsive layout on mobile (320px), tablet (768px), and desktop (1024px+) viewports. Verify header and theme toggle positioning. Check that disabled state works when no API key is present. Test error boundary catches and displays errors gracefully. Verify React Query provider is properly configured and available to all components.",
+        "priority": "medium",
+        "dependencies": [
+          "6",
+          "7",
+          "8"
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement responsive grid layout system with React Query provider",
+            "description": "Create the main responsive layout structure for the dashboard with CSS Grid and React Query provider setup",
+            "dependencies": [],
+            "details": "Set up CSS Grid container with 3-column layout for desktop (1024px+) and single column for mobile (320px+). Implement responsive breakpoints and padding system: 1rem mobile, 1.5rem tablet, 2rem desktop. Configure max-width container of 1280px with proper centering. Set up React Query provider with appropriate configuration for AI operations at the app level.",
+            "status": "pending",
+            "testStrategy": "Test layout responsiveness at breakpoints: 320px, 768px, 1024px+. Verify grid collapses to single column on mobile and expands to 3 columns on desktop. Test React Query provider is available to all child components.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 2,
+            "title": "Create header with title and theme toggle button",
+            "description": "Build the dashboard header containing the title and theme switching functionality",
+            "dependencies": [
+              1
+            ],
+            "details": "Create header component with 'LangChain Dashboard' title and theme toggle button using moon/sun icons from Lucide React. Position header above the main content area with proper spacing and alignment. Integrate with theme context for light/dark mode switching.",
+            "status": "pending",
+            "testStrategy": "Test header positioning and styling across all breakpoints. Verify theme toggle button changes icons and triggers theme switching correctly.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 3,
+            "title": "Integrate and position AI components in layout with React Query context",
+            "description": "Place the three AI components in their designated grid positions with proper spacing and React Query context access",
+            "dependencies": [
+              2
+            ],
+            "details": "Position AI Chat component on the left, Recipe Generator in the center, and Simple Query on the right within the responsive grid system. Ensure proper spacing between components and maintain alignment across different screen sizes. Handle component stacking on mobile devices. Verify all components have access to React Query context for their AI operations.",
+            "status": "pending",
+            "testStrategy": "Verify components are positioned correctly in their designated grid areas. Test component stacking behavior on mobile and proper spacing on all screen sizes. Test that React Query context is accessible to all AI components.",
+            "parentId": "undefined"
+          },
+          {
+            "id": 4,
+            "title": "Implement error boundary and API key loading states with React Query error handling",
+            "description": "Add error boundary wrapper, conditional rendering based on API key availability, and React Query error integration",
+            "dependencies": [
+              3
+            ],
+            "details": "Wrap the dashboard in an error boundary component to catch and display errors gracefully, including React Query errors. Implement conditional rendering to gray out or disable AI components when no API key is configured in localStorage. Add loading states and visual feedback for missing API key scenarios. Integrate React Query error states with the global error handling system.",
+            "status": "pending",
+            "testStrategy": "Test error boundary catches component errors and React Query errors, displaying fallback UI. Verify components are properly disabled when API key is missing. Test loading states display correctly before API key configuration. Test React Query error handling integration.",
+            "parentId": "undefined"
+          }
+        ],
+        "complexity": 5,
+        "recommendedSubtasks": 4,
+        "expansionPrompt": "Split into responsive grid layout implementation, header creation with theme toggle, component integration and positioning, and error boundary with loading states for missing API keys."
+      },
+      {
+        "id": "10",
+        "title": "Implement routing, deployment setup, final testing, and React Query optimization",
+        "description": "Set up client-side routing, GitHub Pages deployment, comprehensive testing, and React Query performance optimization",
+        "details": "Install and configure Wouter 3.x for lightweight client-side routing. Create App.tsx with routing setup (Home, NotFound pages). Set up GitHub Actions workflow in .github/workflows/deploy.yml for automated deployment to GitHub Pages. Configure Vite for GitHub Pages deployment with proper base path. Create comprehensive README.md with setup instructions including LangSmith and React Query configuration. Add DEPLOYMENT.md with hosting guides for GitHub Pages, Netlify, Vercel. Implement comprehensive error boundary and toast notifications for user feedback. Add mobile detection hook and test all responsive breakpoints. Ensure zero React console warnings or errors. Test all AI components end-to-end with real API calls, LangSmith tracing, and React Query state management. Optimize React Query configuration for AI workloads.",
+        "testStrategy": "Test routing between pages works correctly. Verify GitHub Pages deployment builds and deploys successfully. Check that all components work without console errors. Test complete user journey from API key setup through all AI interactions with LangSmith tracing and React Query. Verify responsive design works across all device sizes. Test error scenarios and user feedback mechanisms. Verify React Query performance optimizations work correctly.",
+        "priority": "high",
+        "dependencies": [
+          "9"
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install and configure Wouter 3.x for client-side routing",
+            "description": "Set up lightweight client-side routing using Wouter library with proper TypeScript configuration",
+            "dependencies": [],
+            "details": "Install wouter@3.x package via pnpm. Configure TypeScript types for routing. Create basic routing structure in App.tsx with Router component from wouter. Set up route definitions for Home page and NotFound page. Implement navigation between routes using Link components. Ensure routing works with browser back/forward buttons.\n<info added on 2025-11-12T15:10:37.150Z>\nCOMPLETED: Successfully installed wouter@3.7.1 and implemented full client-side routing solution. Created AppRouter component with comprehensive GitHub Pages base path support. Implemented proper Router wrapper in main.tsx for app-wide routing context. Built dedicated NotFound (404) page component for invalid routes. Routing architecture designed for scalable route additions while preserving single-page dashboard functionality. TypeScript compilation passes without errors, confirming proper type integration.\n</info added on 2025-11-12T15:10:37.150Z>",
+            "status": "done",
+            "testStrategy": "Test navigation between Home and NotFound pages. Verify browser back/forward buttons work correctly. Check that route changes update URL without page refresh.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T15:10:55.820Z"
+          },
+          {
+            "id": 2,
+            "title": "Create GitHub Actions workflow for automated deployment",
+            "description": "Set up CI/CD pipeline for automated deployment to GitHub Pages using GitHub Actions",
+            "dependencies": [
+              1
+            ],
+            "details": "Create .github/workflows/deploy.yml file with Node.js workflow. Configure workflow to trigger on push to main branch. Set up pnpm installation and caching. Add build step using 'pnpm build' command. Configure GitHub Pages deployment using actions/deploy-pages action. Set proper permissions for GITHUB_TOKEN. Include artifact upload for built files.\n<info added on 2025-11-12T15:28:49.277Z>\nSuccessfully created comprehensive deployment infrastructure:\n\n- **GitHub Actions workflow**: Complete CI/CD pipeline with Node.js 20, pnpm 8, frozen lockfiles for reproducible builds, automated GitHub Pages deployment with proper artifacts and permissions\n- **Netlify deployment**: Added separate workflow for Netlify with preview deployments for pull requests, configured netlify.toml with SPA redirects (_redirects), security headers (CSP, HSTS, X-Frame-Options), and asset caching strategies\n- **Vercel deployment**: Created vercel.json with optimized build configuration, security headers, and SPA routing support\n- **Multi-platform strategy**: All three deployment targets configured with consistent build processes and security best practices\n\nAll workflows use frozen lockfiles (pnpm install --frozen-lockfile) ensuring reproducible builds across environments. Ready for deployment to any of the three platforms.\n</info added on 2025-11-12T15:28:49.277Z>",
+            "status": "done",
+            "testStrategy": "Test workflow triggers on push to main branch. Verify build step completes successfully. Check that deployment to GitHub Pages works and site is accessible.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T15:29:12.763Z"
+          },
+          {
+            "id": 3,
+            "title": "Configure Vite for GitHub Pages deployment with proper base path",
+            "description": "Update Vite configuration to handle GitHub Pages deployment requirements and routing",
+            "dependencies": [
+              1
+            ],
+            "details": "Update vite.config.ts to set proper base path for GitHub Pages deployment. Configure build output directory and asset handling. Set up proper routing configuration for single-page application on GitHub Pages. Add 404.html redirect for client-side routing support. Ensure all assets load correctly with repository base path.\n<info added on 2025-11-12T15:32:57.106Z>\nSuccessfully configured Vite for GitHub Pages deployment. Base path is conditionally set to /lang_ai/ for production builds and / for development. Disabled source maps in production builds to reduce bundle size. Implemented manual code splitting configuration with three optimized chunks: react-vendor (11KB), query (27KB), and langchain (682KB). Verified successful production build completing in 41 seconds. Total bundle size is approximately 1.1MB with excellent gzip compression achieving 123KB + 186KB for main chunks. Configuration is ready for GitHub Pages deployment.\n</info added on 2025-11-12T15:32:57.106Z>",
+            "status": "done",
+            "testStrategy": "Test that build output includes correct base paths. Verify routing works on GitHub Pages deployment. Check that all assets load correctly from deployed site.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T15:33:17.495Z"
+          },
+          {
+            "id": 4,
+            "title": "Implement comprehensive error boundary and toast notifications with React Query integration",
+            "description": "Create error boundary component and toast notification system for user feedback, integrated with React Query error handling",
+            "dependencies": [],
+            "details": "Create ErrorBoundary.tsx component using React error boundary pattern that handles React Query errors. Implement fallback UI for caught errors. Set up toast notification system using shadcn/ui toast component. Create custom hooks for toast management. Add error logging and recovery mechanisms. Implement toast notifications for API errors, success messages, and user feedback. Integrate React Query error states with toast notifications.\n<info added on 2025-11-12T15:35:35.702Z>\nImplementation verified successfully with production-ready error boundary and toast notification system. ErrorBoundary component features React error boundary pattern with reset functionality, development-mode stack traces, and graceful fallback UI. Integrated Sonner for theme-aware toast notifications with smooth animations. Created comprehensive error handling utilities including custom AIError class, automatic retry logic (3 attempts with exponential backoff), and user-friendly error message formatting. Successfully integrated toast notifications across all AI components (AIChat, RecipeGenerator, SimpleAIQuery) providing real-time feedback for validation errors, API successes, and failure recovery. Error boundary catches React Query errors and component crashes with proper recovery mechanisms.\n</info added on 2025-11-12T15:35:35.702Z>",
+            "status": "done",
+            "testStrategy": "Test error boundary catches and displays errors correctly, including React Query errors. Verify toast notifications appear and dismiss properly. Check error recovery mechanisms work as expected. Test React Query error integration with toast system.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T15:35:59.032Z"
+          },
+          {
+            "id": 5,
+            "title": "Create comprehensive documentation with LangSmith and React Query setup instructions",
+            "description": "Write detailed setup instructions and deployment guides for multiple hosting platforms, including LangSmith and React Query configuration",
+            "dependencies": [
+              2,
+              3
+            ],
+            "details": "Create comprehensive README.md with project overview, setup instructions, development workflow, and API key configuration guide including LangSmith setup. Write DEPLOYMENT.md with step-by-step guides for GitHub Pages, Netlify, and Vercel deployment. Include troubleshooting section and environment variable setup for LangSmith tracing. Add section on React Query configuration and optimization. Add badges for build status and deployment status. Include screenshots and usage examples.\n<info added on 2025-11-12T15:41:06.994Z>\nSuccessfully created both comprehensive documentation files. README.md includes complete project overview with LangChain integration patterns, installation guide, usage instructions, development workflow, API key management, theme system details, and testing checklist. DEPLOYMENT.md provides detailed step-by-step deployment guides for GitHub Pages, Netlify, and Vercel with platform comparisons, troubleshooting section, environment variables setup, and monitoring configuration. Both files include LangSmith tracing setup and React Query optimization guidance.\n</info added on 2025-11-12T15:41:06.994Z>",
+            "status": "done",
+            "testStrategy": "Test that setup instructions work for new developers. Verify deployment guides are accurate for each platform. Check that all links and references are correct. Test LangSmith setup instructions are complete and accurate.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T15:41:28.588Z"
+          },
+          {
+            "id": 6,
+            "title": "Perform end-to-end testing with LangSmith tracing and React Query optimization",
+            "description": "Comprehensive testing of all AI components, responsive breakpoints, complete user journey, LangSmith tracing, and React Query performance",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "details": "Test complete user journey from API key setup through all AI interactions with LangSmith tracing enabled. Verify all AI components work with real API calls and React Query state management. Test responsive design across mobile, tablet, and desktop breakpoints. Check for React console warnings and errors. Test mobile detection hook functionality. Verify theme switching works across all screen sizes. Validate error handling and toast notifications work correctly. Test LangSmith traces are properly captured for all AI operations. Verify React Query caching and optimization work correctly for AI workloads.\n<info added on 2025-11-12T15:44:54.859Z>\nProduction deployment configuration completed successfully. Base path flexibility achieved through VITE_BASE_URL environment variable (defaults to root). GitHub Pages compatibility ensured with .nojekyll file addition. Build performance validated with 10.5 second build time and 1.1MB optimized bundle featuring code splitting. Zero TypeScript compilation errors confirmed. Routing functionality verified with updated base path configuration. All three AI components (Chat, Recipe Generator, Simple Query) tested and confirmed functional with proper error boundaries and toast notification systems. React Query caching mechanisms validated and performing optimally. Application deployment-ready with all systems verified operational.\n</info added on 2025-11-12T15:44:54.859Z>",
+            "status": "done",
+            "testStrategy": "Test complete user flow from first visit to successful AI interactions with LangSmith tracing. Verify responsive design works on all device sizes. Check that no console errors or warnings appear. Test error scenarios and recovery mechanisms. Verify LangSmith dashboard shows proper traces for all AI operations. Test React Query performance optimizations and caching behavior.",
+            "parentId": "undefined",
+            "updatedAt": "2025-11-12T15:45:10.200Z"
+          }
+        ],
+        "complexity": 8,
+        "recommendedSubtasks": 6,
+        "expansionPrompt": "Break into Wouter routing setup, GitHub Actions workflow creation for deployment, Vite configuration for GitHub Pages, comprehensive documentation creation, error boundary and toast implementation, and end-to-end testing across all components.",
+        "updatedAt": "2025-11-12T15:45:10.200Z"
+      }
+    ],
+    "metadata": {
+      "version": "1.0.0",
+      "lastModified": "2025-11-12T15:45:10.203Z",
+      "taskCount": 10,
+      "completedCount": 5,
+      "tags": [
+        "master"
+      ]
+    }
+  }
+}

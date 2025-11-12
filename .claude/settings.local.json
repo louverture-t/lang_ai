@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(npx task-master-ai:*)",
+      "Bash(npm create:*)",
+      "Bash(test:*)",
+      "Bash(pnpm install)",
+      "Bash(pnpm build)",
+      "Bash(pnpm add:*)",
+      "Bash(npx tailwindcss init -p)",
+      "Bash(pnpm exec tailwindcss:*)",
+      "Bash(pnpm tsc:*)",
+      "Bash(pnpm list:*)",
+      "Bash(pnpm dlx:*)",
+      "Bash(npx task-master:*)",
+      "Bash(pnpm dev)",
+      "Bash(timeout:*)",
+      "Bash(task-master show:*)",
+      "Bash(task-master set-status:*)",
+      "Bash(task-master update-subtask:*)",
+      "Bash(exit 0)",
+      "Bash(lsof:*)",
+      "Bash(xargs cat:*)",
+      "Bash(if not exist \".github\\workflows\" mkdir \".github\\workflows\")",
+      "Bash(dir:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

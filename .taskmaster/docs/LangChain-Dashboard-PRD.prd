@@ -1,0 +1,644 @@
+# Product Requirements Document (PRD)
+## LangChain Dashboard - AI Integration Showcase
+
+**Version:** 1.1  
+**Last Updated:** November 11, 2025  
+**Project Type:** Static Web Application (GitHub Pages Compatible)  
+**Status:** Production Ready
+
+---
+
+## 1. Executive Summary
+
+The **LangChain Dashboard** is a comprehensive demonstration application showcasing three distinct AI integration patterns using LangChain.js and OpenAI's GPT-4.1-mini model. Built as a static single-page application, it demonstrates conversational AI with memory, template-driven prompt engineering, and direct LLM queries—all within a modern, accessible interface featuring pastel green and dark green theming.
+
+### Key Value Propositions
+
+- **Educational Tool**: Demonstrates three fundamental AI integration patterns for developers learning LangChain
+- **Client-Side Architecture**: Fully static deployment compatible with GitHub Pages, Netlify, or Vercel
+- **Modern UX**: Responsive design with dark/light theme support, scrollable result cards, and accessible UI components
+- **Recipe Management**: Built-in local storage system for saving and managing AI-generated recipes
+- **Example-Driven Learning**: Interactive "Try these examples" buttons for quick exploration of AI capabilities
+- **Overflow Protection**: Smart text wrapping and scrolling to handle lengthy AI responses gracefully
+
+---
+
+## 2. Product Vision & Goals
+
+### Vision Statement
+
+Create an intuitive, visually appealing dashboard that empowers developers to understand and implement AI integration patterns through hands-on interaction with three distinct use cases.
+
+### Primary Goals
+
+1. **Demonstrate AI Integration Patterns**: Showcase conversational memory, prompt templates, and direct LLM calls
+2. **Provide Production-Ready Code**: Offer clean, well-structured code that developers can reference or fork
+3. **Ensure Accessibility**: Support both light and dark themes with responsive design across all devices
+4. **Enable Easy Deployment**: Maintain static architecture for simple hosting on free platforms
+
+### Success Metrics
+
+- Clean, error-free console output (React 19 compatibility)
+- Responsive design working on mobile (320px+), tablet (768px+), and desktop (1024px+)
+- Theme switching without visual glitches or content reflow
+- All AI components functional with proper error handling
+
+---
+
+## 3. Target Audience
+
+### Primary Users
+
+- **Junior to Mid-Level Developers** learning AI integration
+- **Technical Students** studying LangChain or prompt engineering
+- **Proof-of-Concept Builders** needing quick AI integration examples
+
+### Secondary Users
+
+- **Technical Recruiters** evaluating candidate portfolios
+- **Product Managers** understanding AI capabilities
+- **Educators** teaching AI/ML integration concepts
+
+---
+
+## 4. Design Specifications
+
+### 4.1 Color System
+
+The application uses a **pastel green** and **dark green** dual-theme system built with OKLCH color space for perceptual uniformity.
+
+#### Light Theme (Pastel Green)
+
+| Element | OKLCH Value | Description |
+|---------|-------------|-------------|
+| Background | `oklch(0.97 0.02 145)` | Very light pastel green |
+| Foreground | `oklch(0.25 0.04 145)` | Deep green-gray text |
+| Card | `oklch(0.99 0.01 145)` | Near-white with green tint |
+| Primary | `var(--color-green-600)` | Medium green for CTAs |
+| Accent | `oklch(0.85 0.06 155)` | Bright pastel green |
+| Border | `oklch(0.88 0.03 145)` | Subtle green-gray borders |
+| Muted | `oklch(0.94 0.02 145)` | Light green for backgrounds |
+
+#### Dark Theme (Dark Green)
+
+| Element | OKLCH Value | Description |
+|---------|-------------|-------------|
+| Background | `oklch(0.15 0.04 145)` | Very dark green-gray |
+| Foreground | `oklch(0.92 0.02 145)` | Light green-white text |
+| Card | `oklch(0.20 0.04 145)` | Dark green card background |
+| Primary | `var(--color-green-500)` | Bright green for CTAs |
+| Accent | `oklch(0.35 0.08 155)` | Vibrant green accent |
+| Border | `oklch(0.30 0.04 145)` | Subtle dark borders |
+| Muted | `oklch(0.28 0.04 145)` | Slightly lighter dark green |
+
+### 4.2 Typography
+
+- **Font Family**: System font stack (default sans-serif)
+- **Headings**: Bold weight, hierarchical sizing (text-2xl, text-xl, text-lg)
+- **Body Text**: Regular weight, base size (text-base)
+- **Code/Monospace**: Not currently used, but available via Tailwind utilities
+
+### 4.3 Spacing & Layout
+
+- **Container Max Width**: 1280px on desktop
+- **Responsive Padding**:
+  - Mobile: 1rem (16px)
+  - Tablet: 1.5rem (24px)
+  - Desktop: 2rem (32px)
+- **Border Radius**: 0.65rem (10.4px) base, with variants (sm, md, lg, xl)
+- **Grid Layout**: 3-column grid on desktop, single column on mobile
+
+### 4.4 Component Design Patterns
+
+#### Cards
+- White/dark background with subtle borders
+- Consistent padding (p-6)
+- Rounded corners (rounded-lg)
+- Hover states for interactive elements
+
+#### Buttons
+- Primary: Green background with white text
+- Secondary: Transparent with green border
+- Destructive: Red for delete actions
+- Loading states with spinner icons
+
+#### Input Fields
+- Consistent border styling
+- Focus rings in primary color
+- Placeholder text in muted color
+- Clear error states
+
+---
+
+## 5. User Journey
+
+### 5.1 First-Time User Flow
+
+```
+Landing → API Key Modal → Configure Key → Explore Components → Use AI Features → Save Recipes (Optional)
+```
+
+#### Step-by-Step Journey
+
+1. **Landing (0-5 seconds)**
+   - User arrives at dashboard
+   - Sees three AI component cards (grayed out/disabled)
+   - Modal automatically appears: "OpenAI API Key Configuration"
+   - Clear instructions: "Enter your OpenAI API key to enable AI features"
+
+2. **API Key Configuration (5-30 seconds)**
+   - User enters API key in password-masked input field
+   - Clicks "Save Key" button
+   - Key stored in localStorage
+   - Modal closes, components become active
+
+3. **Component Exploration (30 seconds - 2 minutes)**
+   - User scans three components:
+     - **AI Chat with Memory** (left): Chat interface with message history
+     - **Recipe Generator** (center): Form with cuisine/dish inputs
+     - **Simple AI Query** (right): Single question input
+   - Theme toggle button visible in header (moon/sun icon)
+
+4. **First Interaction (2-5 minutes)**
+   - **Option A - Chat**: Types "Hello, what can you help me with?" → Receives AI response → Continues conversation
+   - **Option B - Recipe**: Fills in "Italian", "Pasta Carbonara", "Professional" → Clicks "Generate Recipe" → Sees formatted recipe
+   - **Option C - Query**: Asks "What is machine learning?" → Clicks "Ask AI" → Receives concise answer
+
+5. **Advanced Usage (5+ minutes)**
+   - Saves favorite recipes using "Save Recipe" button
+   - Views saved recipes in modal dialog
+   - Deletes unwanted recipes
+   - Switches between light/dark themes
+   - Tests conversation memory (chat remembers last 10 messages)
+
+### 5.2 Returning User Flow
+
+```
+Landing → Auto-Load API Key → Immediate Component Access → Continue Work
+```
+
+- API key persists in localStorage
+- No modal interruption
+- All components immediately functional
+- Saved recipes available in Recipe Generator
+
+### 5.3 Error Recovery Flows
+
+#### Invalid API Key
+```
+Enter Key → API Call Fails → Error Toast → "Invalid API key. Please check and try again"
+```
+
+#### Rate Limiting
+```
+Multiple Requests → 429 Error → Error Toast → "Rate limit exceeded. Please wait a moment"
+```
+
+#### Network Failure
+```
+Submit Request → Network Error → Error Toast → "Network error. Please check your connection"
+```
+
+---
+
+## 6. Feature Specifications
+
+### 6.1 Component 1: AI Chat with Memory 🤖
+
+**Purpose**: Demonstrate conversational AI with context retention
+
+#### Functional Requirements
+
+| Requirement | Description | Priority |
+|-------------|-------------|----------|
+| Message Input | Text area for user messages with Enter-to-send | P0 |
+| Send Button | Submit button with loading state | P0 |
+| Message History | Scrollable area (max 500px) displaying user/AI messages | P0 |
+| Conversation Memory | Retain last 10 messages for context | P0 |
+| Example Prompts | "Try these examples" buttons for quick start | P0 |
+| Text Overflow Protection | Word wrapping and break-words for long messages | P0 |
+| English-Only Responses | AI responses guaranteed in English | P0 |
+| Clear Chat | Button to reset conversation | P1 |
+| Timestamps | Display time for each message | P1 |
+| Auto-Scroll | Scroll to bottom on new messages | P2 |
+
+#### Technical Implementation
+
+- **LangChain Pattern**: `ChatOpenAI` with message history array
+- **Memory Strategy**: Slice last 10 messages before API call
+- **State Management**: React `useState` for messages array
+- **Message Format**:
+  ```typescript
+  interface Message {
+    role: "user" | "ai";
+    content: string;
+    timestamp: Date;
+  }
+  ```
+
+#### UI/UX Details
+
+- **User Messages**: Right-aligned, green background, max-width 80%
+- **AI Messages**: Left-aligned, gray background, max-width 80%
+- **Text Handling**: `whitespace-pre-wrap break-words` for proper wrapping
+- **Scrollable Area**: Max-height 500px with overflow-y-auto
+- **Example Buttons**: Three pre-filled prompts shown when chat is empty
+  - "Tell me a fun fact about space"
+  - "Explain machine learning in simple terms"
+  - "Write a short poem about coding"
+- **Loading State**: Spinner in AI message bubble
+- **Empty State**: "Start a conversation! I'll remember our last 10 messages."
+
+### 6.2 Component 2: Recipe Generator 🍳
+
+**Purpose**: Showcase template-driven prompt engineering
+
+#### Functional Requirements
+
+| Requirement | Description | Priority |
+|-------------|-------------|----------|
+| Tone Input | Text input for recipe tone (e.g., "professional", "casual") | P0 |
+| Cuisine Input | Text input for cuisine type (e.g., "Italian", "Japanese") | P0 |
+| Dish Input | Text input for specific dish name | P0 |
+| Steps Input | Number input for recipe step count | P0 |
+| Generate Button | Submit button with loading state | P0 |
+| Recipe Display | Scrollable formatted output area (max 400px) | P0 |
+| Example Recipes | "Try these examples" buttons with pre-filled forms | P0 |
+| Text Overflow Protection | Word wrapping for long recipe content | P0 |
+| English-Only Recipes | All recipes generated in English | P0 |
+| Save Recipe | Button to save recipe to localStorage | P1 |
+| View Saved | Button to open saved recipes modal | P1 |
+| Delete Recipe | Remove saved recipes from storage | P1 |
+
+#### Technical Implementation
+
+- **LangChain Pattern**: `PromptTemplate` with dynamic variables
+- **Template Structure**:
+  ```
+  You are a {tone} chef creating a recipe. Respond in English only.
+  Generate a detailed recipe for {dish}{cuisine}.
+  Include: Introduction, Ingredients, {steps} steps, Tips
+  Write everything in English.
+  ```
+- **Example Recipes**:
+  - Italian Pasta Carbonara (Professional, 8 steps)
+  - Japanese Ramen (Casual, 10 steps)
+  - Mexican Tacos (Friendly, 6 steps)
+- **Storage**: `localStorage.setItem('saved-recipes', JSON.stringify(recipes))`
+- **Recipe Format**:
+  ```typescript
+  interface Recipe {
+    id: string;
+    dish: string;
+    cuisine: string;
+    tone: string;
+    steps: number;
+    content: string;
+    savedAt: Date;
+  }
+  ```
+
+#### UI/UX Details
+
+- **Form Layout**: 2x2 grid on desktop, stacked on mobile
+- **Recipe Output**: Scrollable area (max 400px) with `whitespace-pre-wrap break-words`
+- **Example Buttons**: Three recipe examples shown before generation
+  - "Pasta Carbonara (Italian)"
+  - "Ramen (Japanese)"
+  - "Tacos (Mexican)"
+- **Saved Recipes Modal**: Two-column layout (list + preview)
+- **Empty State**: "Fill in the details above and click Generate Recipe"
+
+### 6.3 Component 3: Simple AI Query 💡
+
+**Purpose**: Demonstrate direct LLM calls without memory
+
+#### Functional Requirements
+
+| Requirement | Description | Priority |
+|-------------|-------------|----------|
+| Question Input | Text area for user question | P0 |
+| Ask Button | Submit button with loading state | P0 |
+| Response Display | Scrollable formatted area (max 400px) for AI answer | P0 |
+| Example Questions | "Try these examples" buttons for quick queries | P0 |
+| Text Overflow Protection | Word wrapping for lengthy responses | P0 |
+| English-Only Responses | All answers in English | P0 |
+| Input Validation | Prevent empty submissions | P0 |
+| Error Handling | Display API errors gracefully | P0 |
+
+#### Technical Implementation
+
+- **LangChain Pattern**: Direct `ChatOpenAI.invoke()` call with English-only suffix
+- **No Memory**: Each query is independent
+- **Temperature**: 0.7 for balanced creativity
+- **Model**: `gpt-4.1-mini`
+- **Example Questions**:
+  - "What is the difference between AI and ML?"
+  - "How does blockchain work?"
+  - "Explain REST APIs"
+
+#### UI/UX Details
+
+- **Question Input**: Full-width textarea with placeholder
+- **Response**: Scrollable card (max 400px) with `whitespace-pre-wrap break-words`
+- **Example Buttons**: Three question examples shown before first query
+  - "What is the difference between AI and ML?"
+  - "How does blockchain work?"
+  - "Explain REST APIs"
+- **Loading State**: Skeleton loader in response area
+- **Empty State**: "Ask a question to get an AI-powered answer"
+
+### 6.4 Global Features
+
+#### Theme Toggle
+
+- **Location**: Header (top-right)
+- **Icons**: Moon (dark mode), Sun (light mode)
+- **Persistence**: Save preference to localStorage
+- **Transition**: Smooth 200ms transition on all color properties
+
+#### API Key Management
+
+- **Storage**: localStorage (key: `openai-api-key`)
+- **Security Note**: Displayed in modal (client-side only, not recommended for production)
+- **Reconfiguration**: Close modal to re-enter key (future enhancement)
+
+---
+
+## 7. File Structure
+
+```
+langchain-dashboard/
+├── client/
+│   ├── public/                      # Static assets
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── ui/                  # shadcn/ui primitives
+│   │   │   │   ├── button.tsx
+│   │   │   │   ├── card.tsx
+│   │   │   │   ├── dialog.tsx
+│   │   │   │   ├── input.tsx
+│   │   │   │   ├── label.tsx
+│   │   │   │   ├── scroll-area.tsx
+│   │   │   │   ├── textarea.tsx
+│   │   │   │   └── ... (other shadcn components)
+│   │   │   ├── AIChat.tsx           # Chat with memory component
+│   │   │   ├── ApiKeyConfig.tsx     # API key modal
+│   │   │   ├── ErrorBoundary.tsx    # Error boundary wrapper
+│   │   │   ├── RecipeGenerator.tsx  # Recipe generation component
+│   │   │   ├── SavedRecipes.tsx     # Saved recipes modal
+│   │   │   └── SimpleQuery.tsx      # Simple query component
+│   │   ├── contexts/
+│   │   │   └── ThemeContext.tsx     # Theme provider & hook
+│   │   ├── hooks/
+│   │   │   ├── useMobile.tsx        # Mobile detection hook
+│   │   │   ├── usePersistFn.ts      # Function persistence hook
+│   │   │   └── useComposition.ts    # Composition hook
+│   │   ├── lib/
+│   │   │   └── utils.ts             # Utility functions (cn, etc.)
+│   │   ├── pages/
+│   │   │   ├── Home.tsx             # Main dashboard page
+│   │   │   └── NotFound.tsx         # 404 page
+│   │   ├── App.tsx                  # Root component with routing
+│   │   ├── main.tsx                 # React entry point
+│   │   ├── index.css                # Global styles & theme
+│   │   └── const.ts                 # App constants (logo, title)
+│   └── index.html                   # HTML entry point
+├── .github/
+│   └── workflows/
+│       └── deploy.yml               # GitHub Actions deployment
+├── .gitignore                       # Git ignore rules
+├── DEPLOYMENT.md                    # Deployment instructions
+├── PRD.md                           # This document
+├── README.md                        # Project overview
+├── package.json                     # Dependencies
+├── pnpm-lock.yaml                   # Lock file
+├── tailwind.config.ts               # Tailwind configuration
+├── tsconfig.json                    # TypeScript config
+├── vite.config.ts                   # Vite build config
+└── todo.md                          # Feature tracking
+```
+
+### Key Directory Purposes
+
+- **`components/ui/`**: Reusable shadcn/ui primitives (Button, Card, Dialog, etc.)
+- **`components/`**: Feature-specific components (AI Chat, Recipe Generator, etc.)
+- **`contexts/`**: React context providers (Theme management)
+- **`hooks/`**: Custom React hooks for shared logic
+- **`pages/`**: Route-level components
+- **`lib/`**: Utility functions and helpers
+
+---
+
+## 8. Technical Architecture
+
+### 8.1 Technology Stack
+
+| Layer | Technology | Version | Purpose |
+|-------|-----------|---------|---------|
+| Framework | React | 19.x | UI component library |
+| Build Tool | Vite | Latest | Fast development & bundling |
+| Styling | Tailwind CSS | 4.x | Utility-first CSS |
+| UI Components | shadcn/ui | Latest | Accessible component primitives |
+| AI Integration | LangChain.js | Latest | LLM orchestration |
+| LLM Provider | OpenAI | GPT-4.1-mini | Language model |
+| Routing | Wouter | 3.x | Lightweight client-side routing |
+| Type Safety | TypeScript | 5.x | Static type checking |
+| Package Manager | pnpm | Latest | Fast, efficient package management |
+
+### 8.2 Data Flow
+
+```
+User Input → React Component → LangChain.js → OpenAI API → Response → UI Update
+```
+
+#### Detailed Flow Example (Recipe Generator)
+
+1. User fills form (tone, cuisine, dish, steps)
+2. Clicks "Generate Recipe" button
+3. Component creates `ChatOpenAI` instance with API key
+4. `PromptTemplate` formats prompt with user inputs
+5. LangChain invokes OpenAI API
+6. Response streamed back to component
+7. Recipe displayed in UI
+8. User clicks "Save Recipe"
+9. Recipe object stored in localStorage
+10. Toast notification confirms save
+
+### 8.3 State Management
+
+- **Local State**: React `useState` for component-specific data
+- **Context**: `ThemeContext` for global theme state
+- **Persistence**: localStorage for API key, theme preference, saved recipes
+
+### 8.4 API Integration
+
+#### OpenAI Configuration
+
+```typescript
+const model = new ChatOpenAI({
+  apiKey: apiKey,           // From localStorage
+  modelName: "gpt-4.1-mini", // Specified model
+  temperature: 0.7,          // Balanced creativity
+});
+```
+
+#### Error Handling
+
+- Network errors: Display toast with retry suggestion
+- Invalid API key: Prompt user to reconfigure
+- Rate limiting: Show friendly message with wait time
+- Validation errors: Inline field-level feedback
+
+---
+
+## 9. Deployment Strategy
+
+### 9.1 GitHub Pages Deployment
+
+**Automated via GitHub Actions**
+
+1. Push to `main` branch triggers workflow
+2. GitHub Actions runs `pnpm build`
+3. Build output (`dist/`) deployed to `gh-pages` branch
+4. Site available at `https://<username>.github.io/<repo-name>/`
+
+### 9.2 Alternative Hosting Options
+
+- **Netlify**: Drag-and-drop `dist/` folder or connect GitHub repo
+- **Vercel**: Import GitHub repo, auto-detect Vite configuration
+- **Cloudflare Pages**: Connect repo, configure build command
+
+### 9.3 Environment Configuration
+
+**No environment variables required** (client-side API key input)
+
+For production deployments with server-side API key handling, consider upgrading to a backend framework.
+
+---
+
+## 10. Future Enhancements
+
+### Phase 2 Features (Suggested)
+
+1. **Example Prompts**: Add "Try these examples" buttons to each component
+   - AI Chat: "Tell me a joke", "Explain quantum computing", "Write a haiku"
+   - Recipe Generator: Pre-fill forms with popular recipes
+   - Simple Query: "What is AI?", "Explain blockchain", "Define REST API"
+
+2. **Export Functionality**
+   - Download chat history as JSON/Markdown
+   - Export recipes as PDF
+   - Share recipes via URL
+
+3. **Advanced Filters**
+   - Search saved recipes by dish name, cuisine, or tone
+   - Sort by save date or alphabetically
+   - Tag recipes with custom labels
+
+4. **Model Selection**
+   - Dropdown to choose between GPT-4.1-mini, GPT-4.1-nano, Gemini-2.5-flash
+   - Display model-specific pricing/speed info
+
+5. **Streaming Responses**
+   - Show AI responses word-by-word as they generate
+   - Improve perceived performance
+
+6. **Keyboard Shortcuts**
+   - `Ctrl+K`: Focus search
+   - `Ctrl+S`: Save recipe
+   - `Ctrl+Enter`: Send message/submit form
+
+### Phase 3 Features (Advanced)
+
+- **Multi-language Support**: i18n for global users
+- **Voice Input**: Speech-to-text for questions
+- **Recipe Images**: AI-generated images for recipes (DALL-E integration)
+- **User Accounts**: Cloud sync for saved recipes (requires backend)
+
+---
+
+## 11. Success Criteria
+
+### Launch Readiness Checklist
+
+- [x] All three AI components functional
+- [x] Theme switching works without errors
+- [x] Responsive design on mobile, tablet, desktop
+- [x] API key configuration persists across sessions
+- [x] Recipe save/delete functionality works
+- [x] No React console warnings or errors
+- [x] GitHub Pages deployment configured
+- [x] README with setup instructions
+- [x] DEPLOYMENT.md with hosting guide
+
+### Post-Launch Metrics
+
+- **Technical**: Zero console errors, <2s page load time
+- **Usability**: Users can complete first AI interaction within 60 seconds
+- **Adoption**: 80% of users save at least one recipe
+- **Engagement**: Average session duration >5 minutes
+
+---
+
+## 12. Appendix
+
+### A. Example Prompts (To Be Implemented)
+
+#### AI Chat Examples
+1. "Tell me a fun fact about space"
+2. "Explain machine learning in simple terms"
+3. "Write a short poem about coding"
+
+#### Recipe Generator Examples
+1. **Italian Pasta Carbonara** (Professional, 8 steps)
+2. **Japanese Ramen** (Casual, 10 steps)
+3. **Mexican Tacos** (Friendly, 6 steps)
+
+#### Simple Query Examples
+1. "What is the difference between AI and ML?"
+2. "How does blockchain work?"
+3. "Explain REST APIs"
+
+### B. Color Palette Reference
+
+**Light Theme Palette**
+- Background: `#F7FDF9` (pastel green-white)
+- Primary: `#16A34A` (green-600)
+- Accent: `#D1F4DD` (light pastel green)
+- Text: `#1E3A2E` (deep green-gray)
+
+**Dark Theme Palette**
+- Background: `#0F1E17` (very dark green)
+- Primary: `#22C55E` (green-500)
+- Accent: `#2D5A3F` (dark green accent)
+- Text: `#E8F5ED` (light green-white)
+
+### C. Browser Support
+
+- **Modern Browsers**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- **Mobile**: iOS Safari 14+, Chrome Mobile 90+
+- **Not Supported**: IE11 (no polyfills provided)
+
+### D. Accessibility Compliance
+
+- **WCAG 2.1 Level AA**: Target compliance
+- **Keyboard Navigation**: All interactive elements accessible via Tab
+- **Screen Readers**: Semantic HTML with ARIA labels where needed
+- **Color Contrast**: Minimum 4.5:1 for normal text, 3:1 for large text
+
+---
+
+**Document Version History**
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|  
+| 1.0 | 2025-11-11 | AI Assistant | Initial PRD creation |
+| 1.1 | 2025-11-11 | AI Assistant | Added example prompts, overflow protection, scrollable cards (max-height), English-only responses |
+
+**Approval**
+
+- [ ] Product Owner
+- [ ] Engineering Lead
+- [ ] Design Lead
+- [ ] QA Lead
