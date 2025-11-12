@@ -18,11 +18,10 @@ export default defineConfig({
     postcss: './postcss.config.js',
   },
 
-  // Base path configuration for different deployment platforms
-  // - GitHub Pages: Set BASE_URL to '/your-repo-name/' (e.g., '/lang_ai/')
-  // - Netlify/Vercel: Leave empty or set to '/'
-  // - Set via environment variable: VITE_BASE_URL
-  base: process.env.VITE_BASE_URL || '/',
+  // Base path configuration for GitHub Pages deployment
+  // GitHub Pages requires the repo name as base path: '/lang_ai/'
+  // For local development and other platforms, use '/'
+  base: process.env.NODE_ENV === 'production' ? '/lang_ai/' : '/',
 
   // Build optimization
   build: {

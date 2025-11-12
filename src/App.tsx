@@ -66,24 +66,24 @@ function App() {
         />
 
         {/* AI Components Grid */}
-        <div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-3 auto-rows-fr">
           {/* AI Chat Component - Task 6 ✅ */}
           <ErrorBoundary>
-            <div className="lg:col-span-1 h-[600px] md:h-[700px]">
+            <div className="min-h-[600px] flex flex-col">
               <AIChat />
             </div>
           </ErrorBoundary>
 
           {/* Recipe Generator Component - Task 7 ✅ */}
           <ErrorBoundary>
-            <div className="lg:col-span-1 h-[600px] md:h-[700px]">
+            <div className="min-h-[600px] flex flex-col">
               <RecipeGenerator />
             </div>
           </ErrorBoundary>
 
           {/* Simple AI Query Component - Task 8 ✅ */}
           <ErrorBoundary>
-            <div className="lg:col-span-1 h-[600px] md:h-[700px]">
+            <div className="min-h-[600px] flex flex-col">
               <SimpleAIQuery apiKey={apiKey} />
             </div>
           </ErrorBoundary>
