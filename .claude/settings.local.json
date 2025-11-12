@@ -23,7 +23,8 @@
       "Bash(lsof:*)",
       "Bash(xargs cat:*)",
       "Bash(if not exist \".github\\workflows\" mkdir \".github\\workflows\")",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

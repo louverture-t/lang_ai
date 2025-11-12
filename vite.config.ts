@@ -13,6 +13,11 @@ export default defineConfig({
     },
   },
 
+  // Explicitly configure CSS processing with PostCSS
+  css: {
+    postcss: './postcss.config.js',
+  },
+
   // Base path configuration for different deployment platforms
   // - GitHub Pages: Set BASE_URL to '/your-repo-name/' (e.g., '/lang_ai/')
   // - Netlify/Vercel: Leave empty or set to '/'

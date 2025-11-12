@@ -44,6 +44,9 @@ jobs:
 
       - name: Build project
         run: pnpm build
+        env:
+          NODE_ENV: production
+          VITE_BASE_URL: /lang_ai/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
