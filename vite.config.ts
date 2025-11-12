@@ -10,4 +10,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Set base path for GitHub Pages deployment
+  // If deploying to https://<USERNAME>.github.io/<REPO>/
+  // If deploying to custom domain, set to '/'
+  base: process.env.GITHUB_PAGES ? '/lang_ai/' : '/',
 })
