@@ -13,24 +13,27 @@ export default defineConfig({
     },
   },
 
-  // GitHub Pages deployment configuration
-  // Update base path when deploying: base: '/your-repo-name/'
-  base: '/',
+  // Base path configuration for different deployment platforms
+  // - GitHub Pages: Set BASE_URL to '/your-repo-name/' (e.g., '/lang_ai/')
+  // - Netlify/Vercel: Leave empty or set to '/'
+  // - Set via environment variable: VITE_BASE_URL
+  base: process.env.VITE_BASE_URL || '/',
 
   // Build optimization
   build: {
     // Output directory
     outDir: 'dist',
 
-    // Generate source maps for debugging
-    sourcemap: true,
+    // Disable source maps in production for smaller bundle size
+    sourcemap: false,
 
     // Code splitting for better caching
     rollupOptions: {
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
-          // Note: Add 'langchain-vendor': ['langchain'] after installing LangChain (Task #3)
+          'langchain': ['@langchain/openai', '@langchain/core', 'langchain'],
+          'query': ['@tanstack/react-query'],
         },
       },
     },

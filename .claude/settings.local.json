@@ -21,7 +21,9 @@
       "Bash(task-master update-subtask:*)",
       "Bash(exit 0)",
       "Bash(lsof:*)",
-      "Bash(xargs cat:*)"
+      "Bash(xargs cat:*)",
+      "Bash(if not exist \".github\\workflows\" mkdir \".github\\workflows\")",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": []
