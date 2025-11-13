@@ -24,7 +24,14 @@
       "Bash(xargs cat:*)",
       "Bash(if not exist \".github\\workflows\" mkdir \".github\\workflows\")",
       "Bash(dir:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(powershell -Command \"(Get-Content index.html) -replace ''<title>temp</title>'', ''<title>LangChain Dashboard</title>'' | Set-Content index.html\")",
+      "Bash(findstr:*)",
+      "Bash(gh repo list:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh api:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh issue list:*)"
     ],
     "deny": [],
     "ask": []

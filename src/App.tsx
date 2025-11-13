@@ -7,7 +7,7 @@ import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { Button } from '@/components/ui/button'
 import { Toaster } from '@/components/ui/sonner'
 import { useApiKey } from '@/hooks/useApiKey'
-import { Key, CheckCircle2 } from 'lucide-react'
+import { Key, CheckCircle2, ExternalLink } from 'lucide-react'
 
 function App() {
   const { apiKey, hasApiKey, showModal, setShowModal, saveApiKey } = useApiKey()
@@ -15,12 +15,13 @@ function App() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-6 lg:p-8">
       <div className="mx-auto max-w-7xl">
-        {/* Header with theme toggle and API key status */}
-        <header className="mb-6 md:mb-8">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground">LangChain Dashboard</h1>
-              <p className="text-muted-foreground mt-2 text-sm md:text-base">AI Integration Showcase with LangChain.js</p>
+        {/* Simplified Header */}
+        <header className="mb-6 md:mb-8 border-b pb-4">
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground text-center">
+                LangChain Dashboard
+              </h1>
             </div>
             <div className="flex items-center gap-3">
               {/* API Key Status Indicator */}
@@ -66,51 +67,47 @@ function App() {
         />
 
         {/* AI Components Grid */}
-        <div className="grid gap-6 lg:grid-cols-3 auto-rows-fr">
-          {/* AI Chat Component - Task 6 ✅ */}
+        <div className="grid gap-6 lg:grid-cols-3 mb-6" style={{ gridAutoRows: '1fr' }}>
+          {/* AI Chat Component */}
           <ErrorBoundary>
-            <div className="min-h-[600px] flex flex-col">
+            <div className="h-full flex flex-col">
               <AIChat />
             </div>
           </ErrorBoundary>
 
-          {/* Recipe Generator Component - Task 7 ✅ */}
+          {/* Recipe Generator Component */}
           <ErrorBoundary>
-            <div className="min-h-[600px] flex flex-col">
+            <div className="h-full flex flex-col">
               <RecipeGenerator />
             </div>
           </ErrorBoundary>
 
-          {/* Simple AI Query Component - Task 8 ✅ */}
+          {/* Simple AI Query Component */}
           <ErrorBoundary>
-            <div className="min-h-[600px] flex flex-col">
+            <div className="h-full flex flex-col">
               <SimpleAIQuery apiKey={apiKey} />
             </div>
           </ErrorBoundary>
         </div>
 
-        {/* Implementation Status */}
-        <div className="mt-6 md:mt-8 rounded-lg border bg-card p-4 md:p-6">
-          <h2 className="text-lg md:text-xl font-semibold mb-3">Implementation Status</h2>
-          <div className="space-y-2 text-xs md:text-sm">
-            <div className="flex items-start gap-2">
-              <CheckCircle2 className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />
-              <span><strong>Task 6: AI Chat</strong> - Conversational AI with BufferMemory (10 messages)</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <CheckCircle2 className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />
-              <span><strong>Task 7: Recipe Generator</strong> - Template-driven prompts with PromptTemplate</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <CheckCircle2 className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />
-              <span><strong>Task 8: Simple AI Query</strong> - Direct LLM invocation (no memory)</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <CheckCircle2 className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />
-              <span><strong>Task 9: Dashboard Layout</strong> - Responsive grid with error boundaries</span>
-            </div>
+        {/* API Key Notice Banner - Below components */}
+        {!hasApiKey && (
+          <div className="mt-6 rounded-lg border bg-card p-4 text-center">
+            <p className="text-sm text-muted-foreground">
+              This Demo requires your own OPENAI API Key.{' '}
+              <a
+                href="https://platform.openai.com/api-keys"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline inline-flex items-center gap-1"
+              >
+                Get your API key
+                <ExternalLink className="h-3 w-3" />
+              </a>
+              {' '}(New users get $5 free credit)
+            </p>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Toast Notifications */}

@@ -192,9 +192,7 @@ export function RecipeGenerator() {
   );
 
   return (
-    <div className="space-y-6">
-      {/* Main Recipe Generator Card */}
-      <Card>
+    <Card className="h-full flex flex-col">
         <CardHeader>
           <div className="flex items-center gap-2">
             <ChefHat className="h-5 w-5 text-primary" />
@@ -204,7 +202,7 @@ export function RecipeGenerator() {
             Generate custom recipes using LangChain PromptTemplate
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="flex-1 flex flex-col space-y-4 overflow-auto">
           {/* Example Buttons */}
           <div className="flex flex-wrap gap-2">
             <p className="text-sm text-muted-foreground w-full mb-1">Quick Examples:</p>
@@ -347,71 +345,66 @@ export function RecipeGenerator() {
               </ScrollArea>
             </div>
           )}
-        </CardContent>
-      </Card>
 
-      {/* Saved Recipes Card */}
-      {savedRecipes.length > 0 && (
-        <Card>
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle>Saved Recipes ({savedRecipes.length})</CardTitle>
-                <CardDescription>Your recipe collection</CardDescription>
-              </div>
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={handleClearAll}
-                className="gap-2"
-              >
-                <Trash2 className="h-3 w-3" />
-                Clear All
-              </Button>
+          {/* Saved Recipes Section */}
+          {savedRecipes.length > 0 && (
+            <div className="border-t pt-4 mt-4">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <h3 className="font-semibold text-sm">Saved Recipes ({savedRecipes.length})</h3>
+              <p className="text-xs text-muted-foreground">Your recipe collection</p>
             </div>
-          </CardHeader>
-          <CardContent>
-            <ScrollArea className="h-[300px]">
-              <div className="space-y-3">
-                {savedRecipes.map((recipe) => (
-                  <div
-                    key={recipe.id}
-                    className="rounded-lg border bg-card p-4 space-y-2"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-semibold text-sm truncate">
-                          {recipe.dish}
-                        </h4>
-                        <div className="flex flex-wrap gap-2 mt-1 text-xs text-muted-foreground">
-                          <span className="capitalize">{recipe.cuisine}</span>
-                          <span>•</span>
-                          <span className="capitalize">{recipe.tone}</span>
-                          <span>•</span>
-                          <span>{recipe.steps} steps</span>
-                        </div>
+            <Button
+              variant="destructive"
+              size="sm"
+              onClick={handleClearAll}
+              className="gap-2 h-7 text-xs"
+            >
+              <Trash2 className="h-3 w-3" />
+              Clear All
+            </Button>
+          </div>
+          <ScrollArea className="h-[200px]">
+            <div className="space-y-2">
+              {savedRecipes.map((recipe) => (
+                <div
+                  key={recipe.id}
+                  className="rounded-lg border bg-muted/30 p-3 space-y-2"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-xs truncate">
+                        {recipe.dish}
+                      </h4>
+                      <div className="flex flex-wrap gap-1 mt-1 text-xs text-muted-foreground">
+                        <span className="capitalize">{recipe.cuisine}</span>
+                        <span>•</span>
+                        <span className="capitalize">{recipe.tone}</span>
+                        <span>•</span>
+                        <span>{recipe.steps} steps</span>
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleDeleteRecipe(recipe.id)}
-                        className="h-8 w-8 p-0 shrink-0"
-                      >
-                        <Trash2 className="h-3 w-3 text-destructive" />
-                      </Button>
                     </div>
-                    <ScrollArea className="h-[120px] rounded border bg-muted/30 p-2">
-                      <p className="text-xs whitespace-pre-wrap break-words">
-                        {recipe.content}
-                      </p>
-                    </ScrollArea>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleDeleteRecipe(recipe.id)}
+                      className="h-6 w-6 p-0 shrink-0"
+                    >
+                      <Trash2 className="h-3 w-3 text-destructive" />
+                    </Button>
                   </div>
-                ))}
-              </div>
-            </ScrollArea>
-          </CardContent>
-        </Card>
-      )}
-    </div>
+                  <ScrollArea className="h-[80px] rounded border bg-background p-2">
+                    <p className="text-xs whitespace-pre-wrap break-words">
+                      {recipe.content}
+                    </p>
+                  </ScrollArea>
+                </div>
+              ))}
+            </div>
+          </ScrollArea>
+            </div>
+          )}
+        </CardContent>
+    </Card>
   );
 }
