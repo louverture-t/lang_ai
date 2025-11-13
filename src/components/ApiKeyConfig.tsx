@@ -84,11 +84,11 @@ export function ApiKeyConfig({ open, onOpenChange, onSave }: ApiKeyConfigProps) 
 
         <div className="grid gap-4 py-4">
           {/* Security Warning */}
-          <div className="flex gap-3 rounded-lg border border-yellow-500/50 bg-yellow-500/10 p-3 text-sm">
-            <AlertCircle className="h-5 w-5 shrink-0 text-yellow-600 dark:text-yellow-500" />
+          <div className="flex gap-3 rounded-lg border border-warning/50 bg-warning/10 p-3 text-sm">
+            <AlertCircle className="h-5 w-5 shrink-0 text-warning" />
             <div className="space-y-1">
-              <p className="font-medium text-yellow-800 dark:text-yellow-400">Security Notice</p>
-              <p className="text-yellow-700/90 dark:text-yellow-500/90">
+              <p className="font-medium text-warning">Security Notice</p>
+              <p className="text-warning/90">
                 Your API key will be stored in your browser's localStorage and exposed in client-side code.
                 For production apps, use a backend proxy to protect your keys.
               </p>
@@ -110,10 +110,10 @@ export function ApiKeyConfig({ open, onOpenChange, onSave }: ApiKeyConfigProps) 
                 }
               }}
               disabled={isLoading}
-              className={error ? 'border-red-500 focus-visible:ring-red-500' : ''}
+              className={error ? 'border-error focus-visible:ring-error' : ''}
             />
             {error && (
-              <p className="text-sm text-red-600 dark:text-red-500 flex items-center gap-1">
+              <p className="text-sm text-error flex items-center gap-1">
                 <AlertCircle className="h-3 w-3" />
                 {error}
               </p>

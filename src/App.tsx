@@ -27,8 +27,8 @@ function App() {
               <div className="flex items-center gap-2 rounded-lg border px-3 py-2 text-sm">
                 {hasApiKey ? (
                   <>
-                    <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-500" />
-                    <span className="text-green-700 dark:text-green-400">API Key Set</span>
+                    <CheckCircle2 className="h-4 w-4 text-success" />
+                    <span className="text-success">API Key Set</span>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -40,8 +40,8 @@ function App() {
                   </>
                 ) : (
                   <>
-                    <Key className="h-4 w-4 text-yellow-600 dark:text-yellow-500" />
-                    <span className="text-yellow-700 dark:text-yellow-400">No API Key</span>
+                    <Key className="h-4 w-4 text-warning" />
+                    <span className="text-warning">No API Key</span>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -94,19 +94,19 @@ function App() {
           <h2 className="text-lg md:text-xl font-semibold mb-3">Implementation Status</h2>
           <div className="space-y-2 text-xs md:text-sm">
             <div className="flex items-start gap-2">
-              <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <CheckCircle2 className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />
               <span><strong>Task 6: AI Chat</strong> - Conversational AI with BufferMemory (10 messages)</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <CheckCircle2 className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />
               <span><strong>Task 7: Recipe Generator</strong> - Template-driven prompts with PromptTemplate</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <CheckCircle2 className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />
               <span><strong>Task 8: Simple AI Query</strong> - Direct LLM invocation (no memory)</span>
             </div>
             <div className="flex items-start gap-2">
-              <CheckCircle2 className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+              <CheckCircle2 className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />
               <span><strong>Task 9: Dashboard Layout</strong> - Responsive grid with error boundaries</span>
             </div>
           </div>

@@ -2,8 +2,13 @@
 
 @plugin "tailwindcss-animate";
 
-/* Tailwind v4 dark mode custom variant */
+/* Tailwind v4 custom variants */
 @custom-variant dark (&:is(.dark *));
+
+/* Custom responsive breakpoints */
+@variant tablet (min-width: 48rem);    /* 768px - tablet portrait */
+@variant desktop (min-width: 64rem);   /* 1024px - desktop */
+@variant wide (min-width: 90rem);      /* 1440px - wide desktop */
 
 /* OKLCH Color Variables for Dual Theme System */
 :root {
@@ -27,6 +32,14 @@
   --destructive: oklch(0.577 0.245 27.325);
   --input: oklch(0.88 0.03 145);
   --ring: oklch(0.55 0.12 145);
+
+  /* Semantic State Colors (Green theme hue 145) */
+  --success: oklch(0.60 0.14 145);
+  --success-foreground: oklch(0.99 0.01 145);
+  --warning: oklch(0.70 0.15 85);
+  --warning-foreground: oklch(0.25 0.04 85);
+  --error: oklch(0.577 0.245 27.325);
+  --error-foreground: oklch(0.99 0.01 145);
 }
 
 .dark {
@@ -49,6 +62,14 @@
   --destructive: oklch(0.704 0.191 22.216);
   --input: oklch(0.30 0.04 145);
   --ring: oklch(0.65 0.15 145);
+
+  /* Semantic State Colors (Green theme hue 145, adjusted for dark mode) */
+  --success: oklch(0.70 0.16 145);
+  --success-foreground: oklch(0.15 0.04 145);
+  --warning: oklch(0.75 0.16 85);
+  --warning-foreground: oklch(0.15 0.04 85);
+  --error: oklch(0.704 0.191 22.216);
+  --error-foreground: oklch(0.15 0.04 145);
 }
 
 /* Tailwind v4 Theme Mapping */
@@ -58,7 +79,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  
+
   /* Color Mappings */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -78,6 +99,14 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  /* Semantic State Color Mappings */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
 }
 
 /* Base Styles */
@@ -94,8 +123,48 @@
   }
 }
 
-/* Smooth theme transitions */
-* {
+/* Custom Utilities for Dashboard Components */
+@layer utilities {
+  .card-height {
+    min-height: 600px;
+  }
+
+  .textarea-height {
+    min-height: 80px;
+  }
+
+  .recipe-content-height {
+    height: 400px;
+  }
+
+  .recipe-list-height {
+    height: 300px;
+  }
+
+  .recipe-preview-height {
+    height: 120px;
+  }
+
+  .chat-area-height {
+    height: 500px;
+  }
+
+  .message-max-width {
+    max-width: 80%;
+  }
+
+  .dialog-max-width {
+    max-width: 500px;
+  }
+
+  /* Error boundary minimum height */
+  .error-boundary-height {
+    min-height: 400px;
+  }
+}
+
+/* Smooth theme transitions (excludes transform properties to avoid conflicts) */
+*:not([class*="transition-"]):not([class*="animate-"]) {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

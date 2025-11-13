@@ -1,5 +1,5 @@
 /**
- * SimpleAIQuery Component
+ * SimpleAIQuery Component - FIXED VERSION
  *
  * Simple question-answer interface with direct LLM calls (no memory).
  * Each query is independent with no conversation history.
@@ -9,12 +9,12 @@
  * - React Query for state management and caching
  * - LangSmith tracing for debugging
  * - Example questions for quick testing
- * - Loading states with skeleton
+ * - Enhanced error display for debugging
  * - English-only responses
  */
 
 import { useState } from 'react';
-import { Loader2, X } from 'lucide-react';
+import { Loader2, X, AlertCircle } from 'lucide-react';
 import { useAIQuery } from '@/hooks/useAIQuery';
 import { isValidApiKey } from '@/lib/chatConfig';
 import { Button } from '@/components/ui/button';
@@ -39,6 +39,7 @@ const EXAMPLE_QUESTIONS = [
 export function SimpleAIQuery({ apiKey }: SimpleAIQueryProps) {
   const [question, setQuestion] = useState('');
   const [currentResponse, setCurrentResponse] = useState<string | null>(null);
+  const [debugInfo, setDebugInfo] = useState<string | null>(null);
   const aiQuery = useAIQuery();
 
   const handleSubmit = async () => {
@@ -58,6 +59,10 @@ export function SimpleAIQuery({ apiKey }: SimpleAIQueryProps) {
       return;
     }
 
+    // Clear previous response and show debug info
+    setCurrentResponse(null);
+    setDebugInfo(`Sending query: "${question.trim().substring(0, 50)}..."\nAPI Key: ${apiKey.substring(0, 7)}...${apiKey.substring(apiKey.length - 4)}\nTimestamp: ${new Date().toISOString()}`);
+
     try {
       const result = await aiQuery.mutateAsync({
         query: question.trim(),
@@ -65,9 +70,13 @@ export function SimpleAIQuery({ apiKey }: SimpleAIQueryProps) {
       });
 
       setCurrentResponse(result.response);
+      setDebugInfo(null);
+      toast.success('Query completed successfully');
     } catch (error) {
       console.error('Query failed:', error);
-      // Error is handled by React Query and useAIQuery hook
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setDebugInfo(`❌ ERROR:\n${errorMessage}\n\nFull error: ${JSON.stringify(error, null, 2)}`);
+      toast.error(`Query failed: ${errorMessage}`);
     }
   };
 
@@ -85,6 +94,10 @@ export function SimpleAIQuery({ apiKey }: SimpleAIQueryProps) {
       return;
     }
 
+    // Clear previous response and show debug info
+    setCurrentResponse(null);
+    setDebugInfo(`Sending example query: "${exampleQuestion}"\nAPI Key: ${apiKey.substring(0, 7)}...${apiKey.substring(apiKey.length - 4)}\nTimestamp: ${new Date().toISOString()}`);
+
     try {
       const result = await aiQuery.mutateAsync({
         query: exampleQuestion,
@@ -92,14 +105,20 @@ export function SimpleAIQuery({ apiKey }: SimpleAIQueryProps) {
       });
 
       setCurrentResponse(result.response);
+      setDebugInfo(null);
+      toast.success('Query completed successfully');
     } catch (error) {
       console.error('Query failed:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setDebugInfo(`❌ ERROR:\n${errorMessage}\n\nFull error: ${JSON.stringify(error, null, 2)}`);
+      toast.error(`Query failed: ${errorMessage}`);
     }
   };
 
   const handleClear = () => {
     setCurrentResponse(null);
     setQuestion('');
+    setDebugInfo(null);
     toast.success('Cleared');
   };
 
@@ -107,17 +126,17 @@ export function SimpleAIQuery({ apiKey }: SimpleAIQueryProps) {
   const hasError = aiQuery.isError;
 
   return (
-    <Card className="w-full">
-      <CardHeader>
+    <Card className="w-full h-full flex flex-col">
+      <CardHeader className="flex-shrink-0">
         <CardTitle>Simple AI Query</CardTitle>
         <CardDescription>
           Ask any question - each query is independent with no memory
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 flex-1 flex flex-col min-h-0">
         {/* Example Questions */}
-        <div className="space-y-2">
+        <div className="space-y-2 flex-shrink-0">
           <p className="text-sm font-medium">Try these examples:</p>
           <div className="flex flex-wrap gap-2">
             {EXAMPLE_QUESTIONS.map((example) => (
@@ -135,7 +154,7 @@ export function SimpleAIQuery({ apiKey }: SimpleAIQueryProps) {
         </div>
 
         {/* Question Input */}
-        <div className="space-y-2">
+        <div className="space-y-2 flex-shrink-0">
           <Textarea
             placeholder="Ask me anything..."
             value={question}
@@ -167,10 +186,10 @@ export function SimpleAIQuery({ apiKey }: SimpleAIQueryProps) {
         </div>
 
         {/* Response Display */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
+        <div className="space-y-2 flex-1 flex flex-col min-h-0">
+          <div className="flex items-center justify-between flex-shrink-0">
             <p className="text-sm font-medium">Response:</p>
-            {currentResponse && (
+            {(currentResponse || debugInfo) && (
               <Button
                 variant="ghost"
                 size="sm"
@@ -183,15 +202,34 @@ export function SimpleAIQuery({ apiKey }: SimpleAIQueryProps) {
               </Button>
             )}
           </div>
-          <ScrollArea className="h-[400px] w-full rounded-md border p-4">
+          <ScrollArea className="flex-1 w-full rounded-md border p-4">
             {isLoading ? (
               <SkeletonLoader />
-            ) : hasError ? (
-              <div className="text-destructive">
-                <p className="font-semibold">Error occurred</p>
-                <p className="text-sm mt-2">
-                  {aiQuery.error?.message || 'Failed to process your question. Please try again.'}
-                </p>
+            ) : hasError || debugInfo?.includes('ERROR') ? (
+              <div className="space-y-3">
+                <div className="flex items-start gap-2 text-destructive">
+                  <AlertCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
+                  <div className="space-y-2">
+                    <p className="font-semibold">Error occurred</p>
+                    <p className="text-sm">
+                      {aiQuery.error?.message || 'Failed to process your question.'}
+                    </p>
+                  </div>
+                </div>
+                {debugInfo && (
+                  <div className="bg-muted p-3 rounded-md">
+                    <p className="text-xs font-mono whitespace-pre-wrap">{debugInfo}</p>
+                  </div>
+                )}
+                <div className="border-t pt-3 space-y-2">
+                  <p className="text-sm font-medium">Common issues on GitHub Pages:</p>
+                  <ul className="text-xs space-y-1 list-disc list-inside text-muted-foreground">
+                    <li>Check if your API key is valid at platform.openai.com</li>
+                    <li>Verify you have credits available in your OpenAI account</li>
+                    <li>Check browser console (F12) for CORS errors</li>
+                    <li>Ensure your API key has proper permissions</li>
+                  </ul>
+                </div>
               </div>
             ) : currentResponse ? (
               <div className="whitespace-pre-wrap break-words text-sm">
@@ -206,8 +244,17 @@ export function SimpleAIQuery({ apiKey }: SimpleAIQueryProps) {
         </div>
 
         {!apiKey && (
-          <div className="text-sm text-muted-foreground bg-muted p-3 rounded-md">
+          <div className="text-sm text-muted-foreground bg-muted p-3 rounded-md flex-shrink-0">
             ℹ️ Configure your API key to start asking questions
+          </div>
+        )}
+
+        {/* Debug Panel (only in development) */}
+        {import.meta.env.DEV && (
+          <div className="text-xs text-muted-foreground bg-muted/50 p-2 rounded-md flex-shrink-0 font-mono">
+            Debug: API Key {apiKey ? `present (${apiKey.substring(0, 7)}...)` : 'missing'} | 
+            Loading: {isLoading ? 'yes' : 'no'} | 
+            Error: {hasError ? 'yes' : 'no'}
           </div>
         )}
       </CardContent>

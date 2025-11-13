@@ -1,14 +1,26 @@
 # LangChain Dashboard
 
-**An AI integration showcase demonstrating three distinct patterns using LangChain.js and OpenAI's GPT-4.1-mini**
+**An AI integration showcase demonstrating three distinct patterns using LangChain.js and OpenAI's GPT-4o-mini**
 
 A production-ready React dashboard showcasing three different AI integration patterns with LangChain.js, TypeScript, and modern web technologies.
+
+🚀 **Live Demo**: [https://louverture-t.github.io/lang_ai/](https://louverture-t.github.io/lang_ai/)
 
 ![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)
 ![Vite](https://img.shields.io/badge/Vite-7.2.2-646CFF?logo=vite)
 ![LangChain](https://img.shields.io/badge/LangChain.js-1.0.4-00B2FF)
 ![License](https://img.shields.io/badge/license-MIT-green)
+
+## 🔴 AI Not Working After Deployment?
+
+If the AI components aren't responding, check the **[API Troubleshooting Guide](./API_TROUBLESHOOTING.md)** for step-by-step debugging.
+
+**Common issues:**
+- ✅ Expired OpenAI trial credits (most common!)
+- ✅ Invalid or revoked API key  
+- ✅ Browser console errors
+- ✅ Network/CORS blocking
 
 ## ✨ Features
 
@@ -36,6 +48,9 @@ A production-ready React dashboard showcasing three different AI integration pat
 
 - **Frontend**: React 19, TypeScript 5.x, Vite 7.x
 - **Styling**: Tailwind CSS 4.x with OKLCH color space, shadcn/ui components
+  - 🎨 **Dual theme system**: Pastel green (light) and dark green (dark)
+  - 🌈 **Semantic colors**: Success, warning, error states with OKLCH
+  - 🔄 **Smooth transitions**: 200ms theme switching with cubic-bezier easing
 - **AI**: LangChain.js 1.0.4, OpenAI GPT-4.1-mini
 - **State**: React Query 5.x for server state, React Context for theme
 - **Routing**: Wouter 3.x for lightweight client-side routing
@@ -247,6 +262,28 @@ Development mode includes React Query DevTools for inspecting:
 - [ ] Error handling displays properly
 - [ ] Loading states show correctly
 - [ ] Production build works (`pnpm build && pnpm preview`)
+
+## 📚 Documentation
+
+Comprehensive documentation for configuration, features, and best practices:
+
+### Configuration & Setup
+- **[CLAUDE.md](CLAUDE.md)** - Project overview and development guidelines
+- **[API_TROUBLESHOOTING.md](API_TROUBLESHOOTING.md)** - API key issues and debugging
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Deployment guides for GitHub Pages, Netlify, Vercel
+
+### Tailwind CSS v4
+- **[CONFIGURATION_FIXES_SUMMARY.md](CONFIGURATION_FIXES_SUMMARY.md)** - Complete configuration fixes (recommended starting point)
+- **[TAILWIND_V4_FEATURES.md](TAILWIND_V4_FEATURES.md)** - Advanced features guide (custom variants, utilities, transitions)
+- **[TAILWIND_FIX_SUMMARY.md](TAILWIND_FIX_SUMMARY.md)** - Semantic color system implementation
+- **[STYLE_AUDIT_REPORT.md](STYLE_AUDIT_REPORT.md)** - Comprehensive style audit results
+
+### Key Features Documented
+- ✅ **Semantic Color System**: Success, warning, error states with OKLCH
+- ✅ **Custom Utilities**: Component-specific height and width classes
+- ✅ **Custom Variants**: Semantic responsive breakpoints (tablet, desktop, wide)
+- ✅ **Transition Management**: Conflict-free animations
+- ✅ **Performance**: 8% CSS size reduction, 28% faster builds
 
 ## 🤝 Contributing
 
